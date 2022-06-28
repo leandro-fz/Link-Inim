@@ -1,10 +1,11 @@
+const { listCourses } = require("../model/dao/coursesDao");
 const Courses = require("../model/models/corsi");
 
 class CoursesController {
     static async lista (req, res) {
         // console.log('trying operatore controller...')
-        let result = await Courses.lista();
-        return res.json(result);
+        let result = await listCourses();
+        return res.json(result).send();
     }
 
     static async get (req, res) {
