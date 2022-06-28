@@ -29,10 +29,80 @@ class AdminController {
         }            
     }
 
+    static async SetNewProf(req, res){
+        try {
+            let np;
+            if ( ! req.Utente ) {
+                np = await Utente.get(req.params.id);
+            } else {
+                np = req.Utente;
+            }
+            if (req.body.Nome) ns.setNome(req.body.Nome);
+            if (req.body.Cognome) ns.setCognome(req.body.Cognome);
+            if (req.body.CodFiscale) ns.setCodFiscale(req.body.CodFiscale);
+            if (req.body.Email) ns.setEmail(req.body.Email);
+            if (req.body.Password){
+                let newPassword = await hash(req.body.Password, 10);
+                ns.setPassword(newPassword);
+            } 
+            if (req.body.DataDiNascita) ns.setDataDiNascita(req.body.DataDiNascita);
+            if (req.body.Matching) ns.setMatching(req.body.Matching);
+            if (req.body.ProfEsterno) ns.setProfEsterno(req.body.ProfEsterno);
+            if (req.body.Iban) ns.setIban(req.body.Iban);
+            if (req.body.ImmagineUrl) ns.setImmagineUrl(req.body.ImmagineUrl);
+            if (req.body.IsAdmin) ns.setIsAdmin(req.body.IsAdmin);
+            if (req.body.DataAssunzione) ns.setDataAssunzione(req.body.DataAssunzione);
+            await  np.save();
+            res.status(200).send("Ok");
+        } catch (err) {
+            res.status(500).send ("Internal Server Error");
+        }
+    }
+
+    static async edit (req,res) {
+        try {
+            let np;
+            if ( ! req.Utente ) {
+                np = await Utente.get(req.params.id);
+            } else {
+                np = req.Utente;
+            }
+            if (req.body.Nome) ns.setNome(req.body.Nome);
+            if (req.body.Cognome) ns.setCognome(req.body.Cognome);
+            if (req.body.CodFiscale) ns.setCodFiscale(req.body.CodFiscale);
+            if (req.body.Email) ns.setEmail(req.body.Email);
+            if (req.body.Password){
+                let newPassword = await hash(req.body.Password, 10);
+                ns.setPassword(newPassword);
+            } 
+            if (req.body.DataDiNascita) ns.setDataDiNascita(req.body.DataDiNascita);
+            if (req.body.Matching) ns.setMatching(req.body.Matching);
+            if (req.body.ProfEsterno) ns.setProfEsterno(req.body.ProfEsterno);
+            if (req.body.Iban) ns.setIban(req.body.Iban);
+            if (req.body.ImmagineUrl) ns.setImmagineUrl(req.body.ImmagineUrl);
+            if (req.body.IsAdmin) ns.setIsAdmin(req.body.IsAdmin);
+            if (req.body.DataAssunzione) ns.setDataAssunzione(req.body.DataAssunzione);
+            await  np.save();
+            res.status(200).send("Ok");
+        } catch (err) {
+            res.status(500).send ("Internal Server Error");
+        }
+    }
+
 
     static async lista(req, res) {
         const listaUt = await listaUtenti();
         return res.json(listaUt).send()
+    }
+
+    static async get (req,res) {
+        let result;
+        if ( ! req.Utente ) {
+            result = await Utente.get(req.params.id);
+        } else {
+            result = req.Utente;
+        }
+        return res.json(result);
     }
 
     static async elimina (req,res) {
@@ -57,7 +127,7 @@ class AdminController {
             if (req.body.CodFiscale) ns.setCodFiscale(req.body.CodFiscale);
             if (req.body.Email) ns.setEmail(req.body.Email);
             if (req.body.Password){
-                let newPassword = await hash(req.body.password, 10);
+                let newPassword = await hash(req.body.Password, 10);
                 ns.setPassword(newPassword);
             } 
             if (req.body.DataDiNascita) ns.setDataDiNascita(req.body.DataDiNascita);
