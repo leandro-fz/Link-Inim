@@ -15,6 +15,7 @@ class Utente {
             if (p.Iban) this.Iban = p.Iban;
             if (p.ImmagineUrl) this.ImmagineUrl = p.ImmagineUrl;
             if (p.DataAssunzione) this.DataAssunzione = p.DataAssunzione;
+            if (p.IsAdmin) this.IsAdmin = p.IsAdmin;
         }
     }
 
@@ -142,6 +143,16 @@ class Utente {
     getIban() {
         return this.ImmagineUrl;
     }
+
+    setIsAdmin(x){
+        this.IsAdmin = x;
+
+    }
+
+    getIsAdmin(){
+        return this.IsAdmin;
+    }
+
     setDataAssunzione(x) {
         if (x == null || typeof (x) == 'undefined') throw 'DataAssunzione cannot be null';
         this.DataAssunzione = x;
@@ -152,13 +163,13 @@ class Utente {
 
     async save() {
         if (typeof (this.id) != 'undefined' && this.id != null) {
-            let res = await updateUtente(this.id, this.Nome, this.Cognome, this.CodFiscale, this.Email, this.Password, this.DataDiNascita, this.Matching, this.ProfEsterno, this.Iban, this.ImmagineUrl, this.DataAssunzione
+            let res = await updateUtente(this.id, this.Nome, this.Cognome, this.CodFiscale, this.Email, this.Password, this.DataDiNascita, this.Matching, this.ProfEsterno, this.Iban, this.ImmagineUrl, this.DataAssunzione, this.IsAdmin
             );
             if (!res) {
                 throw 'save Utente failed (update case).';
             }
         } else {
-            let res = await insertUtente(this.Nome, this.Cognome, this.CodFiscale, this.Email, this.Password, this.DataDiNascita, this.Matching, this.ProfEsterno, this.Iban, this.ImmagineUrl, this.DataAssunzione
+            let res = await insertUtente(this.Nome, this.Cognome, this.CodFiscale, this.Email, this.Password, this.DataDiNascita, this.Matching, this.ProfEsterno, this.Iban, this.ImmagineUrl, this.DataAssunzione, this.IsAdmin
             );
             this.setId(res);
             if (!res) throw 'save Utente failed (insert case).';
