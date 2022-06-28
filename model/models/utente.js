@@ -1,4 +1,4 @@
-const { getUtenteByEmailDAO} = require('../dao/utenteDao');
+const { getUtenteByEmailDAO, insertUtente, getUtenteById, utenteDeleteById } = require('../dao/utenteDao');
 
 class Utente {
     constructor(p) {
@@ -36,11 +36,11 @@ class Utente {
     //     return res;
     // }
 
-    // static async get(id) {
-    //     let pf = await getUtenteById(id);
-    //     if (pf) { return new Operatore(pf); }
-    //     return null;
-    // }
+    static async get(id) {
+        let pf = await getUtenteById(id);
+        if (pf) { return new Utente(pf); }
+        return null;
+    }
 
     // static async exists(id) {
     //     return await utenteExistById(id);
@@ -50,9 +50,9 @@ class Utente {
     //     return await utenteExistById(id);
     // }
 
-    // static async delete(id) {
-    //     return await utenteDeleteById(id);
-    // }
+    static async delete(id) {
+        return await utenteDeleteById(id);
+    }
 
     // setId(x) {
     //     if (x == null || typeof (x) == 'undefined') throw 'Nome cannot be null';
@@ -144,12 +144,11 @@ class Utente {
         return this.ImmagineUrl;
     }
 
-    setIsAdmin(x){
+    setIsAdmin(x) {
         this.IsAdmin = x;
-
     }
 
-    getIsAdmin(){
+    getIsAdmin() {
         return this.IsAdmin;
     }
 
