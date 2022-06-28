@@ -1,4 +1,4 @@
-const { getUtenteByUsername, listaOperatore, operatoreExistById, getOperatoreById, insertOperatore, updateOperatore, updateCampiOperatore, operatoreDeleteById } = require('../dao/utenteDao');
+const { getUtenteByEmailDAO} = require('../dao/utenteDao');
 
 class Utente {
     constructor(p) {
@@ -21,7 +21,7 @@ class Utente {
 
 
     static async getUtenteByEmail(utente) {
-        const ut = await getUtenteByEmail(utente);
+        const ut = await getUtenteByEmailDAO(utente);
         const obj = new Utente(ut)
         return obj
     }

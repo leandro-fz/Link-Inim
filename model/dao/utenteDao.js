@@ -1,6 +1,6 @@
 const { getConnection } = require('../../db/connection');
 
-async function getUtenteByEmail(email) {
+async function getUtenteByEmailDAO(email) {
     const conn = await getConnection();
     const [utenti] = await conn.query('SELECT * FROM Utenti WHERE Email = ?', [email]);
     return utenti[0];
@@ -24,5 +24,5 @@ const insertUtente = async (Nome, Cognome, CodFiscale, Email, Password, DataDiNa
   module.exports = {
     getUtenteById,
     insertUtente,
-    getUtenteByEmail
+    getUtenteByEmailDAO
   }
