@@ -3,7 +3,7 @@ const routerCorsi = require('./courses')
 
 function ConnectRouter(app){
     app.use('/login', routerLogin)
-    app.use('/corsi', routerLogin)
+    app.use('/corsi', routerCorsi)
 }
 
 module.exports = ConnectRouter;
