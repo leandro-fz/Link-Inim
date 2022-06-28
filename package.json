@@ -5,14 +5,12 @@
     "cors": "^2.8.5",
     "dotenv": "^16.0.1",
     "express": "^4.18.1",
-    "mysql2": "^2.3.3",
-    "nodemon": "^2.0.18"
+    "mysql2": "^2.3.3"
   },
   "name": "linkinim",
   "description": "",
   "version": "1.0.0",
   "main": "index.js",
-  "devDependencies": {},
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node app.js",
@@ -27,5 +25,8 @@
   "bugs": {
     "url": "https://github.com/leandro-fz/Link-Inim/issues"
   },
-  "homepage": "https://github.com/leandro-fz/Link-Inim#readme"
+  "homepage": "https://github.com/leandro-fz/Link-Inim#readme",
+  "devDependencies": {
+    "nodemon": "^2.0.18"
+  }
 }
