@@ -22,10 +22,10 @@ const insertCourses = async (titolo, specializzazione, durata, capitoli, idProf,
     return res.insertId;
 }
 
-const updateCourses = async (titolo, specializzazione, durata, capitoli, idProf, isdeleted) => {
+const updateCourses = async (titolo, specializzazione, durata, capitoli, idProf, isdeleted, id) => {
     const conn = await getConnection();
     const query = 'UPDATE Corsi SET Titolo = ?, Specializzazione = ?, Durata = ?, Capitoli = ?, IdProf = ?, IsDeleted = ? WHERE Id = ?';
-    const [res] = await conn.query(query, [titolo, specializzazione, durata, capitoli, idProf, isdeleted]);
+    const [res] = await conn.query(query, [titolo, specializzazione, durata, capitoli, idProf, isdeleted, id]);
     // console.log(res);
     return res.affectedRows === 1;
 }

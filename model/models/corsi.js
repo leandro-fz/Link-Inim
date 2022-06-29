@@ -88,10 +88,10 @@ class Courses {
     // }
     setTitolo(x) {
         if (x == null || typeof (x) == 'undefined') throw 'Titolo cannot be null';
-        this.titolo = x;
+        this.Titolo = x;
     }
     getTitolo() {
-        return this.titolo;
+        return this.Titolo;
     }
 
     setSpecializzazione(x) {

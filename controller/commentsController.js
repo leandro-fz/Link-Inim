@@ -1,25 +1,25 @@
-const { listCourses } = require("../model/dao/coursesDao");
-const Courses = require("../model/models/corsi");
+const { listComments } = require("../model/dao/commentsDao");
+const Comments = require("../model/models/commenti");
 
-class CoursesController {
+class CommentsController {
 
     static async checkId (req,res,next) {
         try {
-            if (req.params.idCorsi ) {
-                const eIntero = parseInt(req.params.idCorsi);
+            if (req.params.idCommenti ) {
+                const eIntero = parseInt(req.params.idCommenti);
                 if(isNaN(eIntero)) {
-                  return res.status(400).send("id corsi non numerico");
+                  return res.status(400).send("id commenti non numerico");
                 }
                 let p;
-                p= await Courses.get(req.params.idCorsi);
+                p= await Comments.get(req.params.idCommenti);
                 if (p) {
-                    req.Courses=p;
+                    req.Comments=p;
                     next();
                 }  else {
-                    return res.status(404).send ("Id corsi non trovato");                    
+                    return res.status(404).send ("Id commenti non trovato");                    
                 }               
             } else {
-                return res.status(404).send("Id corsi NON Fornito");
+                return res.status(404).send("Id commenti NON Fornito");
             }
         } catch (err) {
             return res.status(500).send ("Internal Server Error");
@@ -29,17 +29,17 @@ class CoursesController {
 
     static async lista (req, res) {
         // console.log('trying operatore controller...')
-        let result = await listCourses();
+        let result = await listComments();
         return res.json(result).send();
     }
 
     static async get (req, res) {
         let result;
-        if (! req.Courses) {
-            result = await Courses.get(req.params.idCorsi);
+        if (! req.Comments) {
+            result = await Comments.get(req.params.idCommenti);
             console.log(result);
         } else {
-            result = req.Courses;
+            result = req.Comments;
         }
         console.log(result);
         return res.json(result);
@@ -47,13 +47,11 @@ class CoursesController {
 
     static async insert (req, res) {
         try {
-            let np = new Courses();
-            if (req.body.Titolo) np.setTitolo(req.body.Titolo);
-            if (req.body.Specializzazione) np.setSpecializzazione(req.body.Specializzazione);
-            if (req.body.Durata) np.setDurata(req.body.Durata);
-            if (req.body.Capitoli) np.setCapitoli(req.body.Capitoli);
-            if (req.body.IdProf) np.setIdProf(req.body.IdProf);
-            if (req.body.IsDeleted) np.setIsDeleted(req.body.IsDeleted);
+            let np = new Comments();
+            if (req.body.Testo) np.setTesto(req.body.Testo);
+            if (req.body.Datetime) np.setDatetime(req.body.Datetime);
+            if (req.body.IdUtente) np.setIdUtente(req.body.IdUtente);
+            if (req.body.IdCorso) np.setIdCorso(req.body.IdCorso);
             await np.save();
             // return res.json({
             //     message: 'done'
@@ -67,13 +65,11 @@ class CoursesController {
 
     static async update (req, res) {
         try {
-            let np = await Courses.get(req.params.idCorsi);
-            if (req.body.Titolo) np.setTitolo(req.body.Titolo);
-            if (req.body.Specializzazione) np.setSpecializzazione(req.body.Specializzazione);
-            if (req.body.Durata) np.setDurata(req.body.Durata);
-            if (req.body.Capitoli) np.setCapitoli(req.body.Capitoli);
-            if (req.body.IdProf) np.setIdProf(req.body.IdProf);
-            if (req.body.IsDeleted) np.setIsDeleted(req.body.IsDeleted);
+            let np = await Comments.get(req.params.idCommenti);
+            if (req.body.Testo) np.setTesto(req.body.Testo);
+            if (req.body.Datetime) np.setDatetime(req.body.Datetime);
+            if (req.body.IdUtente) np.setIdUtente(req.body.IdUtente);
+            if (req.body.IdCorso) np.setIdCorso(req.body.IdCorso);
             await np.save();
             // return res.json({
             //     message: 'done'
@@ -87,7 +83,7 @@ class CoursesController {
 
     static async delete (req, res) {
         try {
-            if (await Courses.delete(req.params.idCorsi)) {
+            if (await Comments.delete(req.params.idCommenti)) {
                 res.status(200).send('ok');
             } else {
                 res.status(400).send ("something went wrong");
@@ -102,5 +98,5 @@ class CoursesController {
 }
 
 module.exports = {
-    CoursesController
+    CommentsController
 }
