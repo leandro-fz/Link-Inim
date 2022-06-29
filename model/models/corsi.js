@@ -9,7 +9,7 @@ class Courses {
             if (p.Specializzazione) this.Specializzazione = p.Specializzazione;
             if (p.Durata) this.Durata = p.Durata;
             if (p.Capitoli) this.Capitoli = p.Capitoli;
-            if (p.IsDeleted) this.IsDeleted = p.IsDeleted;
+            if (p.IsDeleted !== null) this.IsDeleted = p.IsDeleted;
 
             if (p.IdProf) this.IdProf = p.IdProf;
 
