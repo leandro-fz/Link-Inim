@@ -15,17 +15,17 @@ const getCoursesById = async (id) => {
     return rows[0];
   }
 
-const insertCourses = async (titolo, specializzazione, durata, capitoli, idProf) => {
+const insertCourses = async (titolo, specializzazione, durata, capitoli, idProf, isdeleted) => {
     const conn = await getConnection();
-    const query = 'INSERT INTO Corsi (Titolo, Specializzazione, Durata, Capitoli, IdProf) VALUES (?, ?, ?, ?, ?)';
-    const [res] = await conn.query(query, [titolo, specializzazione, durata, capitoli, idProf]);
+    const query = 'INSERT INTO Corsi (Titolo, Specializzazione, Durata, Capitoli, IdProf, IsDeleted) VALUES (?, ?, ?, ?, ?, ?)';
+    const [res] = await conn.query(query, [titolo, specializzazione, durata, capitoli, idProf, isdeleted]);
     return res.insertId;
 }
 
-const updateCourses = async (titolo, specializzazione, durata, capitoli, idProf) => {
+const updateCourses = async (titolo, specializzazione, durata, capitoli, idProf, isdeleted) => {
     const conn = await getConnection();
-    const query = 'UPDATE Corsi SET titolo = ?, specializzazione = ?, durata = ?, capitoli = ?, idProf = ? WHERE id = ?';
-    const [res] = await conn.query(query, [titolo, specializzazione, durata, capitoli, idProf]);
+    const query = 'UPDATE Corsi SET Titolo = ?, Specializzazione = ?, Durata = ?, Capitoli = ?, IdProf = ?, IsDeleted = ? WHERE Id = ?';
+    const [res] = await conn.query(query, [titolo, specializzazione, durata, capitoli, idProf, isdeleted]);
     // console.log(res);
     return res.affectedRows === 1;
 }

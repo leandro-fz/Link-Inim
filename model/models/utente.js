@@ -146,6 +146,7 @@ class Utente {
     }
 
     setIsAdmin(x) {
+        if (x == null || typeof (x) == 'undefined') throw 'IsAdmin cannot be null';
         this.IsAdmin = x;
     }
 
@@ -153,6 +154,8 @@ class Utente {
         return this.IsAdmin;
     }
     setIsDeleted(x) {
+        if (x == null || typeof (x) == 'undefined') throw 'IsDeleted cannot be null';
+
         this.IsDeleted = x;
     }
 

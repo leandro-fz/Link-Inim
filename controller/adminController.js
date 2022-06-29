@@ -96,6 +96,7 @@ class AdminController {
             if (req.body.Iban) ns.setIban(req.body.Iban);
             if (req.body.ImmagineUrl) ns.setImmagineUrl(req.body.ImmagineUrl);
             if (req.body.IsAdmin) ns.setIsAdmin(req.body.IsAdmin);
+            if (req.body.IsDeleted) ns.IsDeleted( ( req.body.IsDeleted));
             if (req.body.DataAssunzione) ns.setDataAssunzione(req.body.DataAssunzione);
             await  np.save();
             res.status(200).send("Ok");
@@ -145,14 +146,14 @@ class AdminController {
                 let newPassword = await hash(req.body.Password, 10);
                 ns.setPassword(newPassword);
             } 
-            if (req.body.DataDiNascita) ns.setDataDiNascita(new Date(req.body.DataDiNascita));
-            if (req.body.Matching) ns.setMatching((req.body.Matching));
-            if (req.body.ProfEsterno) ns.setProfEsterno((req.body.ProfEsterno));
-            if (req.body.Iban) ns.setIban(req.body.Iban);
+            if (req.body.DataDiNascita) ns.setDataDiNascita(req.body.DataDiNascita);
+            ns.setMatching(req.body.Matching);
+            ns.setProfEsterno(req.body.ProfEsterno);
+            ns.setIban(req.body.Iban);
             if (req.body.ImmagineUrl) ns.setImmagineUrl(req.body.ImmagineUrl);
-            if (req.body.IsAdmin) ns.setIsAdmin( ( req.body.IsAdmin));
-            if (req.body.IsDeleted) ns.setIsAdmin( ( req.body.IsDeleted));
-            if (req.body.DataAssunzione) ns.setDataAssunzione( new Date(req.body.DataAssunzione));
+            ns.setIsAdmin(req.body.IsAdmin);
+            ns.setIsDeleted(req.body.isDeleted);
+            if (req.body.DataAssunzione) ns.setDataAssunzione(req.body.DataAssunzione);
 
             await ns.save()
             res.status(201).send("Created");

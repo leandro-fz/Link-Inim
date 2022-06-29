@@ -1,4 +1,4 @@
-const { listCourses, insertCourses, getCoursesById, deleteCourses} = require('../dao/coursesDao');
+const { listCourses, insertCourses, getCoursesById, deleteCourses, updateCourses} = require('../dao/coursesDao');
 
 class Courses {
     constructor(p) {
@@ -8,6 +8,7 @@ class Courses {
             if (p.specializzazione) this.specializzazione = p.specializzazione;
             if (p.durata) this.durata = p.durata;
             if (p.capitoli) this.capitoli = p.capitoli;
+            if (p.isdeleted) this.isdeleted = p.isdeleted;
 
             if (p.idProf) this.idProf = p.idProf;
 
@@ -72,6 +73,14 @@ class Courses {
         if (x == null || typeof (x) == 'undefined') throw 'IDProf cannot be null';
         this.idProf = x;
     }
+    getIsDeleted() {
+        return this.isdeleted;
+    }
+
+    setIsDeleted(x) {
+        if (x == null || typeof (x) == 'undefined') throw 'IsDeleted cannot be null';
+        this.isdeleted = x;
+    }
 
     // existId() {
     //     if (this.id == null || typeof (this.id) == 'undefined') return false;
@@ -110,13 +119,13 @@ class Courses {
 
     async save() {
         if (typeof (this.id) != 'undefined' && this.id != null) {
-            let res = await updateCorsi(this.id, this.titolo, this.specializzazione, this.durata, this.capitoli, this.idProf
+            let res = await updateCourses(this.id, this.titolo, this.specializzazione, this.durata, this.capitoli, this.idProf, this.isdeleted
             );
             if (!res) {
-                throw 'save Utente failed (update case).';
+                throw 'save Courses failed (update case).';
             }
         } else {
-            let res = await insertCourses(this.titolo, this.specializzazione, this.durata, this.capitoli, this.idProf
+            let res = await insertCourses(this.titolo, this.specializzazione, this.durata, this.capitoli, this.idProf, this.isdeleted
             );
             this.setId(res);
             if (!res) throw 'save Courses failed (insert case).';
