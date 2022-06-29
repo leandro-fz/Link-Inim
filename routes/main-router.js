@@ -1,5 +1,5 @@
 const routerLogin = require('./auth')
-const routerCorsi = require('./courses')
+const routerCorsi = require('./coursesRouter')
 const routerAdmin = require('./adminRoute.js')
 const routerHome = require('./adminRoute.js')
 

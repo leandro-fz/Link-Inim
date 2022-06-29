@@ -2,6 +2,31 @@ const { listCourses } = require("../model/dao/coursesDao");
 const Courses = require("../model/models/corsi");
 
 class CoursesController {
+
+    static async checkId (req,res,next) {
+        try {
+            if (req.params.id ) {
+                const eIntero = parseInt(req.params.id);
+                if(isNaN(eIntero)) {
+                  return res.status(400).send("id non numerico");
+                }
+                let p;
+                p= await Courses.get(req.params.id);
+                if (p) {
+                    req.Utente=p;
+                    next();
+                }  else {
+                    return res.status(404).send ("Id non trovato");                    
+                }               
+            } else {
+                return res.status(404).send("Id NON Fornito");
+            }
+        } catch (err) {
+            return res.status(500).send ("Internal Server Error");
+        }            
+    }
+
+
     static async lista (req, res) {
         // console.log('trying operatore controller...')
         let result = await listCourses();
@@ -12,9 +37,11 @@ class CoursesController {
         let result;
         if (! req.Courses) {
             result = await Courses.get(req.params.id);
+            console.log(result);
         } else {
             result = req.Courses;
         }
+        console.log(result);
         return res.json(result);
     }
 

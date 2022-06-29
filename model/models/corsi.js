@@ -37,7 +37,7 @@ class Courses {
 
     static async get(id) {
         let pf = await getCoursesById(id);
-        if (pf) { return new Courses(pf); }
+        if (pf) { return pf; }
         return null;
     }
 

@@ -10,7 +10,7 @@ const listCourses = async () => {
 
 const getCoursesById = async (id) => {
     const conn = await getConnection();
-    const query = `SELECT * FROM Corsi WHERE id = ?`;
+    const query = `SELECT * FROM Corsi WHERE Id = ?`;
     const [rows] = await conn.query(query, [id]);
     return rows[0];
   }

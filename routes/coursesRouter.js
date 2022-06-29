@@ -8,10 +8,10 @@ const { compare } = require('bcrypt');
 // })
 
 routerCourses.get('/', CoursesController.lista);
-routerCourses.get('/:id', CoursesController.get);
-routerCourses.put('/:id', CoursesController.update);
+routerCourses.get('/:id', CoursesController.checkId, CoursesController.get);
+routerCourses.put('/:id', CoursesController.checkId, CoursesController.update);
 routerCourses.post('/', CoursesController.insert);
-routerCourses.delete('/:id', CoursesController.delete)
+routerCourses.delete('/:id', CoursesController.checkId, CoursesController.delete);
 
 
 
