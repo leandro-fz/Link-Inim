@@ -36,7 +36,7 @@ const getUtenteById = async (id_utente) => {
   return rows[0];
 }
 
-const insertUtente = async (Nome, Cognome, CodFiscale, Email, Password, DataDiNascita, Matching, ProfEsterno, Iban, ImmagineUrl, DataAssunzione, IsAdmin, IsDeleted, IsProf) => {
+const insertUtente = async (Nome, Cognome, CodFisc, Email, Password, DataDiNascita, Matching, ProfEsterno, Iban, ImmagineUrl, DataAssunzione, IsAdmin, IsDeleted, IsProf) => {
   const connection = await getConnection();
   const query = `INSERT INTO Utenti (Nome, Cognome, CodFisc, DataDiNascita, Email, Password,Iban,  ImmagineUrl, DataAssunzione, IsProf, IsAdmin, IsDeleted, ProfEsterno,   Matching)
     VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?)`;
@@ -44,11 +44,11 @@ const insertUtente = async (Nome, Cognome, CodFiscale, Email, Password, DataDiNa
   return res.insertId;
 }
 
-const updateUtente = async (id, Nome, Cognome, CodFiscale, Email, Password, DataDiNascita, Matching, ProfEsterno, Iban, ImmagineUrl, DataAssunzione, IsAdmin, IsDeleted, IsProf) => {
+const updateUtente = async (id, Nome, Cognome, CodFisc, Email, Password, DataDiNascita, Matching, ProfEsterno, Iban, ImmagineUrl, DataAssunzione, IsAdmin, IsDeleted, IsProf) => {
   const connection = await getConnection();
   const query = `UPDATE Utente SET nome = ?, Nome = ?, Cognome = ?, CodFisc = ?, Email= ?, Password= ?, DataDiNascita= ?, Matching= ?, ProfEsterno= ?, Iban= ?, ImmagineUrl= ?, DataAssunzione= ?, IsAdmin= ?, IsDeleted= ?, IsProf=?
   WHERE Id = ?`;
-  const [res] = await connection.query(query, [Nome, Cognome, CodFiscale, Email, Password, DataDiNascita, Matching, ProfEsterno, Iban, ImmagineUrl, DataAssunzione, IsAdmin, IsDeleted,IsProf, id]);
+  const [res] = await connection.query(query, [Nome, Cognome, CodFisc, Email, Password, DataDiNascita, Matching, ProfEsterno, Iban, ImmagineUrl, DataAssunzione, IsAdmin, IsDeleted,IsProf, id]);
   return res.affectedRows === 1;
 }
 

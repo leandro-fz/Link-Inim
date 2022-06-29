@@ -39,7 +39,7 @@ class AdminController {
     //         }
     //         if (req.body.Nome) ns.setNome(req.body.Nome);
     //         if (req.body.Cognome) ns.setCognome(req.body.Cognome);
-    //         if (req.body.CodFiscale) ns.setCodFiscale(req.body.CodFiscale);
+    //         if (req.body.CodFisc) ns.setCodFisc(req.body.CodFisc);
     //         if (req.body.Email) ns.setEmail(req.body.Email);
     //         if (req.body.Password){
     //             let newPassword = await hash(req.body.Password, 10);
@@ -88,7 +88,7 @@ class AdminController {
             }
             if (req.body.Nome) ns.setNome(req.body.Nome);
             if (req.body.Cognome) ns.setCognome(req.body.Cognome);
-            if (req.body.CodFiscale) ns.setCodFiscale(req.body.CodFiscale);
+            if (req.body.CodFisc) ns.setCodFisc(req.body.CodFisc);
             if (req.body.Email) ns.setEmail(req.body.Email);
             if (req.body.Password){
                 let newPassword = await hash(req.body.Password, 10);
@@ -100,12 +100,14 @@ class AdminController {
             ns.setIban(req.body.Iban);
             if (req.body.ImmagineUrl) ns.setImmagineUrl(req.body.ImmagineUrl);
             ns.setIsAdmin(req.body.IsAdmin);
-            ns.setIsDeleted( ( req.body.IsDeleted));
-            ns.setIsProf( ( req.body.IsProf));
+            ns.setMatching(req.body.Matching)
+            ns.setIsDeleted(req.body.IsDeleted);
+            ns.setIsProf(req.body.IsProf);
             if (req.body.DataAssunzione) ns.setDataAssunzione(req.body.DataAssunzione);
             await  ns.save();
             res.status(200).send("Ok");
         } catch (err) {
+            console.log(err);
             res.status(500).send ("Internal Server Error");
         }
     }
@@ -145,7 +147,7 @@ class AdminController {
 
             if (req.body.Nome) ns.setNome(req.body.Nome);
             if (req.body.Cognome) ns.setCognome(req.body.Cognome);
-            if (req.body.CodFiscale) ns.setCodFiscale(req.body.CodFiscale);
+            if (req.body.CodFisc) ns.setCodFisc(req.body.CodFisc);
             if (req.body.Email) ns.setEmail(req.body.Email);
             if (req.body.Password){
                 let newPassword = await hash(req.body.Password, 10);

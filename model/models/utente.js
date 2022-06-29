@@ -6,7 +6,7 @@ class Utente {
             if (p.id) this.id = p.id;
             if (p.Nome) this.Nome = p.Nome;
             if (p.Cognome) this.Cognome = p.Cognome;
-            if (p.CodFiscale) this.CodFiscale = p.CodFiscale;
+            if (p.CodFisc) this.CodFisc = p.CodFisc;
             if (p.Email) this.Email = p.Email;
             if (p.Password) this.Password = p.Password;
             if (p.DataDiNascita) this.DataDiNascita = p.DataDiNascita;
@@ -89,12 +89,12 @@ class Utente {
         return this.Cognome;
     }
 
-    setCodFiscale(x) {
+    setCodFisc(x) {
         if (x == null || typeof (x) == 'undefined') throw 'Codice Fiscale cannot be null';
-        this.CodFiscale = x;
+        this.CodFisc = x;
     }
-    getCodFiscale() {
-        return this.CodFiscale;
+    getCodFisc() {
+        return this.CodFisc;
     }
     setEmail(x) {
         if (x == null || typeof (x) == 'undefined') throw 'Email cannot be null';
@@ -184,13 +184,13 @@ class Utente {
 
     async save() {
         if (typeof (this.id) != 'undefined' && this.id != null) {
-            let res = await updateUtente(this.id, this.Nome, this.Cognome, this.CodFiscale, this.Email, this.Password, this.DataDiNascita, this.Matching, this.ProfEsterno, this.Iban, this.ImmagineUrl, this.DataAssunzione, this.IsAdmin, this.IsDeleted, this.IsProf
+            let res = await updateUtente(this.id, this.Nome, this.Cognome, this.CodFisc, this.Email, this.Password, this.DataDiNascita, this.Matching, this.ProfEsterno, this.Iban, this.ImmagineUrl, this.DataAssunzione, this.IsAdmin, this.IsDeleted, this.IsProf
             );
             if (!res) {
                 throw 'save Utente failed (update case).';
             }
         } else {
-            let res = await insertUtente(this.Nome, this.Cognome, this.CodFiscale, this.Email, this.Password, this.DataDiNascita, this.Matching, this.ProfEsterno, this.Iban, this.ImmagineUrl, this.DataAssunzione, this.IsAdmin, this.IsDeleted, this.IsProf
+            let res = await insertUtente(this.Nome, this.Cognome, this.CodFisc, this.Email, this.Password, this.DataDiNascita, this.Matching, this.ProfEsterno, this.Iban, this.ImmagineUrl, this.DataAssunzione, this.IsAdmin, this.IsDeleted, this.IsProf
             );
             this.setId(res);
             if (!res) throw 'save Utente failed (insert case).';
