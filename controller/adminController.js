@@ -68,7 +68,12 @@ class AdminController {
             } else {
                 np = req.Utente;
             }
-            np.set
+            //let a = np.getIsProf()
+
+            //np.setIsProf(!a) //se true o false
+            //a == 0 ? np.setIsProf(1) : np.setIsProf(0) //se 1 o0 
+
+            np.save()
         } catch (error) {
             
         }
