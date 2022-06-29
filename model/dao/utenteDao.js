@@ -38,9 +38,9 @@ const getUtenteById = async (id_utente) => {
 
 const insertUtente = async (Nome, Cognome, CodFiscale, Email, Password, DataDiNascita, Matching, ProfEsterno, Iban, ImmagineUrl, DataAssunzione, IsAdmin, IsDeleted, IsProf) => {
   const connection = await getConnection();
-  const query = `INSERT INTO Utenti (Nome, Cognome, CodFisc, Email, Password, DataDiNascita, Matching, ProfEsterno, Iban, ImmagineUrl, DataAssunzione, IsAdmin, IsDeleted, IsProf)
+  const query = `INSERT INTO Utenti (Nome, Cognome, CodFisc, DataDiNascita, Email, Password,Iban,  ImmagineUrl, DataAssunzione, IsProf, IsAdmin, IsDeleted, ProfEsterno,   Matching)
     VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?)`;
-  const [res] = await connection.query(query, [Nome, Cognome, CodFiscale, Email, Password, DataDiNascita, Matching, ProfEsterno, Iban, ImmagineUrl, DataAssunzione, IsAdmin, IsDeleted, IsProf]);
+  const [res] = await connection.query(query, [Nome, Cognome, CodFisc, DataDiNascita, Email, Password,Iban,  ImmagineUrl, DataAssunzione, IsProf, IsAdmin, IsDeleted, ProfEsterno,   Matching]);
   return res.insertId;
 }
 

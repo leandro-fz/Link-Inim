@@ -101,8 +101,8 @@ class AdminController {
             ns.setIban(req.body.Iban);
             if (req.body.ImmagineUrl) ns.setImmagineUrl(req.body.ImmagineUrl);
             ns.setIsAdmin(req.body.IsAdmin);
-            ns.IsDeleted( ( req.body.IsDeleted));
-            ns.IsProf( ( req.body.IsProf));
+            ns.setIsDeleted( ( req.body.IsDeleted));
+            ns.setIsProf( ( req.body.IsProf));
             if (req.body.DataAssunzione) ns.setDataAssunzione(req.body.DataAssunzione);
             await  np.save();
             res.status(200).send("Ok");
@@ -158,8 +158,8 @@ class AdminController {
             ns.setIban(req.body.Iban);
             if (req.body.ImmagineUrl) ns.setImmagineUrl(req.body.ImmagineUrl);
             ns.setIsAdmin(req.body.IsAdmin);
-            ns.setIsDeleted(req.body.isDeleted);
-            ns.IsProf( ( req.body.IsProf));
+            ns.setIsDeleted(req.body.IsDeleted);
+            ns.setIsProf(req.body.IsProf);
             if (req.body.DataAssunzione) ns.setDataAssunzione(req.body.DataAssunzione);
 
             await ns.save()
