@@ -21,11 +21,11 @@ class CoursesController {
     static async insert (req, res) {
         try {
             let np = new Courses();
-            if (req.body.titolo) np.setTitolo(req.body.titolo);
-            if (req.body.specializzazione) np.setSpecializzazione(req.body.specializzazione);
-            if (req.body.durata) np.setDurata(req.body.durata);
-            if (req.body.capitoli) np.setCapitoli(req.body.capitoli);
-            if (req.body.idProf) np.setIdProf(req.body.idProf);
+            if (req.body.Titolo) np.setTitolo(req.body.Titolo);
+            if (req.body.Specializzazione) np.setSpecializzazione(req.body.Specializzazione);
+            if (req.body.Durata) np.setDurata(req.body.Durata);
+            if (req.body.Capitoli) np.setCapitoli(req.body.Capitoli);
+            if (req.body.IdProf) np.setIdProf(req.body.IdProf);
             await np.save();
             // return res.json({
             //     message: 'done'
@@ -40,11 +40,11 @@ class CoursesController {
     static async update (req, res) {
         try {
             let np = await Courses.get(req.params.id);
-            if (req.body.titolo) np.setTitolo(req.body.titolo);
-            if (req.body.specializzazione) np.setSpecializzazione(req.body.specializzazione);
-            if (req.body.durata) np.setDurata(req.body.durata);
-            if (req.body.capitoli) np.setCapitoli(req.body.capitoli);
-            if (req.body.idProf) np.setIdProf(req.body.idProf);
+            if (req.body.Titolo) np.setTitolo(req.body.Titolo);
+            if (req.body.Specializzazione) np.setSpecializzazione(req.body.Specializzazione);
+            if (req.body.Durata) np.setDurata(req.body.Durata);
+            if (req.body.Capitoli) np.setCapitoli(req.body.Capitoli);
+            if (req.body.IdProf) np.setIdProf(req.body.IdProf);
             await np.save();
             // return res.json({
             //     message: 'done'

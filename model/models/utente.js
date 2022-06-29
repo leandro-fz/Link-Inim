@@ -1,4 +1,4 @@
-const { getUtenteByEmailDAO, insertUtente, getUtenteById, utenteDeleteById } = require('../dao/utenteDao');
+const { getUtenteByEmailDAO, insertUtente, getUtenteById, utenteDeleteById , updateUtente} = require('../dao/utenteDao');
 
 class Utente {
     constructor(p) {
@@ -16,6 +16,7 @@ class Utente {
             if (p.ImmagineUrl) this.ImmagineUrl = p.ImmagineUrl;
             if (p.DataAssunzione) this.DataAssunzione = p.DataAssunzione;
             if (p.IsAdmin) this.IsAdmin = p.IsAdmin;
+            if (p.IsDeleted) this.IsDeleted = p.IsDeleted;
         }
     }
 
@@ -151,6 +152,13 @@ class Utente {
     getIsAdmin() {
         return this.IsAdmin;
     }
+    setIsDeleted(x) {
+        this.IsDeleted = x;
+    }
+
+    getIsDeleted() {
+        return this.IsDeleted;
+    }
 
     setDataAssunzione(x) {
         if (x == null || typeof (x) == 'undefined') throw 'DataAssunzione cannot be null';
@@ -162,13 +170,13 @@ class Utente {
 
     async save() {
         if (typeof (this.id) != 'undefined' && this.id != null) {
-            let res = await updateUtente(this.id, this.Nome, this.Cognome, this.CodFiscale, this.Email, this.Password, this.DataDiNascita, this.Matching, this.ProfEsterno, this.Iban, this.ImmagineUrl, this.DataAssunzione, this.IsAdmin
+            let res = await updateUtente(this.id, this.Nome, this.Cognome, this.CodFiscale, this.Email, this.Password, this.DataDiNascita, this.Matching, this.ProfEsterno, this.Iban, this.ImmagineUrl, this.DataAssunzione, this.IsAdmin, this.IsDeleted
             );
             if (!res) {
                 throw 'save Utente failed (update case).';
             }
         } else {
-            let res = await insertUtente(this.Nome, this.Cognome, this.CodFiscale, this.Email, this.Password, this.DataDiNascita, this.Matching, this.ProfEsterno, this.Iban, this.ImmagineUrl, this.DataAssunzione, this.IsAdmin
+            let res = await insertUtente(this.Nome, this.Cognome, this.CodFiscale, this.Email, this.Password, this.DataDiNascita, this.Matching, this.ProfEsterno, this.Iban, this.ImmagineUrl, this.DataAssunzione, this.IsAdmin, this.IsDeleted
             );
             this.setId(res);
             if (!res) throw 'save Utente failed (insert case).';

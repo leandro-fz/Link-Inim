@@ -36,16 +36,25 @@ const getUtenteById = async (id_utente) => {
   return rows[0];
 }
 
-const insertUtente = async (Nome, Cognome, CodFiscale, Email, Password, DataDiNascita, Matching, ProfEsterno, Iban, ImmagineUrl, DataAssunzione, IsAdmin) => {
+const insertUtente = async (Nome, Cognome, CodFiscale, Email, Password, DataDiNascita, Matching, ProfEsterno, Iban, ImmagineUrl, DataAssunzione, IsAdmin, IsDeleted) => {
   const connection = await getConnection();
-  const query = `INSERT INTO Utenti (Nome, Cognome, CodFisc, Email, Password, DataDiNascita, Matching, ProfEsterno, Iban, ImmagineUrl, DataAssunzione, IsAdmin)
-    VALUES (?,?,?,?,?,?,?,?,?,?,?,?)`;
-  const [res] = await connection.query(query, [Nome, Cognome, CodFiscale, Email, Password, DataDiNascita, Matching, ProfEsterno, Iban, ImmagineUrl, DataAssunzione, IsAdmin]);
+  const query = `INSERT INTO Utenti (Nome, Cognome, CodFisc, Email, Password, DataDiNascita, Matching, ProfEsterno, Iban, ImmagineUrl, DataAssunzione, IsAdmin, IsDeleted)
+    VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?)`;
+  const [res] = await connection.query(query, [Nome, Cognome, CodFiscale, Email, Password, DataDiNascita, Matching, ProfEsterno, Iban, ImmagineUrl, DataAssunzione, IsAdmin, IsDeleted]);
   return res.insertId;
+}
+
+const updateUtente = async (id, Nome, Cognome, CodFiscale, Email, Password, DataDiNascita, Matching, ProfEsterno, Iban, ImmagineUrl, DataAssunzione, IsAdmin, IsDeleted) => {
+  const connection = await getConnection();
+  const query = `UPDATE Utente SET nome = ?, Nome = ?, Cognome = ?, CodFisc = ?, Email= ?, Password= ?, DataDiNascita= ?, Matching= ?, ProfEsterno= ?, Iban= ?, ImmagineUrl= ?, DataAssunzione= ?, IsAdmin= ?, IsDeleted= ?
+  WHERE Id = ?`;
+  const [res] = await connection.query(query, [Nome, Cognome, CodFiscale, Email, Password, DataDiNascita, Matching, ProfEsterno, Iban, ImmagineUrl, DataAssunzione, IsAdmin, IsDeleted, id]);
+  return res.affectedRows === 1;
 }
 
 module.exports = {
   getUtenteById,
+  updateUtente,
   insertUtente,
   getUtenteByEmailDAO,
   listaUtenti,

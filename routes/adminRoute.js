@@ -9,6 +9,6 @@ routerAdmin.delete('/utente/:id', adminController.checkId , adminController.elim
 routerAdmin.get('/utente/:id', adminController.checkId, adminController.get);
 routerAdmin.put('/utente/:id', adminController.checkId, adminController.edit);
 
-//routerAdmin.put('/utente/setProf/:id', adminController.checkId, adminController.edit);
+routerAdmin.get('/utente/setProf/:id', adminController.checkId, adminController.profPermission);
 
 module.exports = routerAdmin;
