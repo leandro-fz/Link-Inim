@@ -1,6 +1,6 @@
 const Utente = require('../model/models/Utente')
 const { listaUtenti } = require('../model/dao/utenteDao')
-const { compare, hash } = require('bcrypt');
+const { hash } = require('bcrypt');
 
 
 class AdminController {
@@ -71,8 +71,10 @@ class AdminController {
             let a = np.getIsProf()
 
             //np.setIsProf(!a) //se true o false
-            a == 0 ? np.setIsProf(1) : np.setIsProf(0)
+            a <= 0 ? np.setIsProf(1) : np.setIsProf(0)
             np.save()
+            res.status(200).send("Ok");
+
         } catch (error) {
             res.status(500).send("Internal Server Error");
         }
