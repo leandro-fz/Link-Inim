@@ -165,7 +165,8 @@ class AdminController {
 
             await ns.save()
             res.status(201).send("Created");
-        } catch {
+        } catch(err) {
+            console.log(err);
             res.status(500).send("Internal Server Error");
         }
     }

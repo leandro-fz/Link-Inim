@@ -3,7 +3,7 @@ const { getUtenteByEmailDAO, insertUtente, getUtenteById, utenteDeleteById , upd
 class Utente {
     constructor(p) {
         if (p) {
-            if (p.id) this.id = p.id;
+            if (p.Id) this.id = p.Id;
             if (p.Nome) this.Nome = p.Nome;
             if (p.Cognome) this.Cognome = p.Cognome;
             if (p.CodFisc) this.CodFisc = p.CodFisc;
@@ -105,10 +105,10 @@ class Utente {
     }
     setPassword(x) {
         if (x == null || typeof (x) == 'undefined') throw 'Password cannot be null';
-        this.password = x;
+        this.Password = x;
     }
     getPassword() {
-        return this.password;
+        return this.Password;
     }
     setDataDiNascita(x) {
         if (x == null || typeof (x) == 'undefined') throw 'Password cannot be null';
