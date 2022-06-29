@@ -1,7 +1,7 @@
 const routerLogin = require('./auth')
 const routerCorsi = require('./courses')
 const routerAdmin = require('./adminRoute.js')
-const routerHome = require('./adminRoute.js')
+const routerHome = require('./homeRoute.js')
 
 function ConnectRouter(app){
     app.use('/login', routerLogin)
