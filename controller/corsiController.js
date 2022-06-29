@@ -1,15 +1,17 @@
 const { listCourses } = require("../model/dao/coursesDao");
 const Courses = require("../model/models/corsi");
+const { logger } = require('../common/logging')
 
 class CoursesController {
     static async lista (req, res) {
-        // console.log('trying operatore controller...')
+        logger.debug("CorsoController Lista req.params.id:", req.params.id)
         let result = await listCourses();
         return res.json(result).send();
     }
 
     static async get (req, res) {
         let result;
+        logger.debug("CorsoController GET req.params.id:", req.params.id)
         if (! req.Courses) {
             result = await Courses.get(req.params.id);
         } else {
@@ -20,6 +22,7 @@ class CoursesController {
 
     static async insert (req, res) {
         try {
+            logger.debug ("CoursesController: insert: body: ", req.body);
             let np = new Courses();
             if (req.body.Titolo) np.setTitolo(req.body.Titolo);
             if (req.body.Specializzazione) np.setSpecializzazione(req.body.Specializzazione);
@@ -33,6 +36,7 @@ class CoursesController {
             // }); 
             res.status(200).send("Ok");
         } catch (e){
+            logger.error ("ERRORE INSERT CorsiController:", e);
             res.status(500).send ("Internal Server Error");
             console.log(e);
         }
@@ -40,6 +44,7 @@ class CoursesController {
 
     static async update (req, res) {
         try {
+            logger.debug ("CoursesController: update: body: ", req.body);
             let np = await Courses.get(req.params.id);
             if (req.body.Titolo) np.setTitolo(req.body.Titolo);
             if (req.body.Specializzazione) np.setSpecializzazione(req.body.Specializzazione);
@@ -52,7 +57,8 @@ class CoursesController {
             //     message: 'done'
             // }); 
             res.status(200).send("Ok");
-        } catch {
+        } catch (e){
+            logger.error ("ERRORE Update CorsiController:", e);
             res.status(500).send ("Internal Server Error");
         }
     }
@@ -67,7 +73,8 @@ class CoursesController {
         // return res.json({
         //     message: 'successfully deleted'
         // }); 
-        } catch {
+        } catch (e){
+            logger.error ("ERRORE Delete CorsiController:", e);
             res.status(500).send ("Internal Server Error");
         }
     }
