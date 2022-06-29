@@ -103,7 +103,7 @@ class AdminController {
             ns.setIsDeleted( ( req.body.IsDeleted));
             ns.setIsProf( ( req.body.IsProf));
             if (req.body.DataAssunzione) ns.setDataAssunzione(req.body.DataAssunzione);
-            await  np.save();
+            await  ns.save();
             res.status(200).send("Ok");
         } catch (err) {
             res.status(500).send ("Internal Server Error");
