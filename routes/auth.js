@@ -9,9 +9,9 @@ routerAuth.post('/', async (req, res) => {
     const { email, password } = req.body
     const utente = await Utente.getUtenteByEmail(email);
     if (await compare(password, utente.getPassword())) {
-      let token = await getTokenByUtente(utente.id)
+      let token = await getTokenByUtente(utente.Id)
       if (token === null || token === undefined){
-        let token = await generatorToken(utente.id)
+        let token = await generatorToken(utente.Id)
         return res.json({
           token: token
         }).send()
@@ -24,7 +24,7 @@ routerAuth.post('/', async (req, res) => {
         }else{
           const _ = await deleteToken(token.token)
           try {
-            token = await generatorToken(utente.id)
+            token = await generatorToken(utente.Id)
           } catch (error) {
             console.log(error);
           }

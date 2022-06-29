@@ -44,11 +44,11 @@ const insertUtente = async (Nome, Cognome, CodFisc, Email, Password, DataDiNasci
   return res.insertId;
 }
 
-const updateUtente = async (id, Nome, Cognome, CodFisc, Email, Password, DataDiNascita, Matching, ProfEsterno, Iban, ImmagineUrl, DataAssunzione, IsAdmin, IsDeleted, IsProf) => {
+const updateUtente = async (Id, Nome, Cognome, CodFisc, Email, Password, DataDiNascita, Matching, ProfEsterno, Iban, ImmagineUrl, DataAssunzione, IsAdmin, IsDeleted, IsProf) => {
   const connection = await getConnection();
   const query = `UPDATE Utenti SET  Nome = ?, Cognome = ?, CodFisc = ?, Email= ?, Password= ?, DataDiNascita= ?, Matching= ?, ProfEsterno= ?, Iban= ?, ImmagineUrl= ?, DataAssunzione= ?, IsAdmin= ?, IsDeleted= ?, IsProf=?
   WHERE Id = ?`;
-  const [res] = await connection.query(query, [Nome, Cognome, CodFisc, Email, Password, DataDiNascita, Matching, ProfEsterno, Iban, ImmagineUrl, DataAssunzione, IsAdmin, IsDeleted,IsProf, id]);
+  const [res] = await connection.query(query, [Nome, Cognome, CodFisc, Email, Password, DataDiNascita, Matching, ProfEsterno, Iban, ImmagineUrl, DataAssunzione, IsAdmin, IsDeleted,IsProf, Id]);
   return res.affectedRows === 1;
 }
 

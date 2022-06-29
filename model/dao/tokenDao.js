@@ -13,7 +13,7 @@ async function getTokenByUtente(id_utente){
     const conn = await getConnection();
     const date = new Date();
     const expno = date.getTime() + exp;
-    await conn.query('INSERT INTO Token (Token, IdUtente, exp, remind_me) VALUES (?, ?, ?, ?)',[token, IdUtente, expno, remind_me ]);
+    await conn.query('INSERT INTO Token (Token, IdUtente, Scadenza, RemindMe) VALUES (?, ?, ?, ?)',[token, IdUtente, expno, remind_me ]);
   }
 
   async function generatorToken(id_utente){

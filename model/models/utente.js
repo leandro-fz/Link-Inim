@@ -3,7 +3,7 @@ const { getUtenteByEmailDAO, insertUtente, getUtenteById, utenteDeleteById , upd
 class Utente {
     constructor(p) {
         if (p) {
-            if (p.Id) this.id = p.Id;
+            if (p.Id) this.Id = p.Id;
             if (p.Nome) this.Nome = p.Nome;
             if (p.Cognome) this.Cognome = p.Cognome;
             if (p.CodFisc) this.CodFisc = p.CodFisc;
@@ -38,39 +38,39 @@ class Utente {
     //     return res;
     // }
 
-    static async get(id) {
-        let pf = await getUtenteById(id);
+    static async get(Id) {
+        let pf = await getUtenteById(Id);
         if (pf) { return new Utente(pf); }
         return null;
     }
 
-    // static async exists(id) {
-    //     return await utenteExistById(id);
+    // static async exists(Id) {
+    //     return await utenteExistById(Id);
     // }
 
-    // static async find(id) {
-    //     return await utenteExistById(id);
+    // static async find(Id) {
+    //     return await utenteExistById(Id);
     // }
 
-    static async delete(id) {
-        return await utenteDeleteById(id);
+    static async delete(Id) {
+        return await utenteDeleteById(Id);
     }
 
     // setId(x) {
     //     if (x == null || typeof (x) == 'undefined') throw 'Nome cannot be null';
-    //     this.id = x;
+    //     this.Id = x;
     // }
     getId() {
-        return this.id;
+        return this.Id;
     }
 
     setId(x) {
         if (x == null || typeof (x) == 'undefined') throw 'ID cannot be null';
-        this.id = x;
+        this.Id = x;
     }
 
     // existId() {
-    //     if (this.id == null || typeof (this.id) == 'undefined') return false;
+    //     if (this.Id == null || typeof (this.Id) == 'undefined') return false;
     //     return true;
     // }
     setNome(x) {
@@ -183,8 +183,8 @@ class Utente {
     }
 
     async save() {
-        if (typeof (this.id) != 'undefined' && this.id != null) {
-            let res = await updateUtente(this.id, this.Nome, this.Cognome, this.CodFisc, this.Email, this.Password, this.DataDiNascita, this.Matching, this.ProfEsterno, this.Iban, this.ImmagineUrl, this.DataAssunzione, this.IsAdmin, this.IsDeleted, this.IsProf
+        if (typeof (this.Id) != 'undefined' && this.Id != null) {
+            let res = await updateUtente(this.Id, this.Nome, this.Cognome, this.CodFisc, this.Email, this.Password, this.DataDiNascita, this.Matching, this.ProfEsterno, this.Iban, this.ImmagineUrl, this.DataAssunzione, this.IsAdmin, this.IsDeleted, this.IsProf
             );
             if (!res) {
                 throw 'save Utente failed (update case).';

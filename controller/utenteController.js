@@ -6,7 +6,7 @@ class UtenteController {
         try {
             let result;
             if (!req.Utente) {
-                result = await Utente.get(req.params.id);
+                result = await Utente.get(req.params.Id);
                 console.log(result);
             } else {
                 result = req.Utente;
@@ -22,7 +22,7 @@ class UtenteController {
         try {
             let np;
             if ( ! req.Utente ) {
-                np = await Utente.get(req.params.id);
+                np = await Utente.get(req.params.Id);
             } else {
                 np = req.Utente;
             }
@@ -42,7 +42,7 @@ class UtenteController {
         try {
             let np;
             if ( ! req.Utente ) {
-                np = await Utente.get(req.params.id);
+                np = await Utente.get(req.params.Id);
             } else {
                 np = req.Utente;
             }

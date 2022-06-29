@@ -8,13 +8,13 @@ class AdminController {
 
     static async checkId (req,res,next) {
         try {
-            if (req.params.id ) {
-                const eIntero = parseInt(req.params.id);
+            if (req.params.Id ) {
+                const eIntero = parseInt(req.params.Id);
                 if(isNaN(eIntero)) {
-                  return res.status(400).send("id non numerico");
+                  return res.status(400).send("Id non numerico");
                 }
                 let p;
-                p= await Utente.get(req.params.id);
+                p= await Utente.get(req.params.Id);
                 if (p) {
                     req.Utente=p;
                     next();
@@ -33,7 +33,7 @@ class AdminController {
     //     try {
     //         let np;
     //         if ( ! req.Utente ) {
-    //             np = await Utente.get(req.params.id);
+    //             np = await Utente.get(req.params.Id);
     //         } else {
     //             np = req.Utente;
     //         }
@@ -64,7 +64,7 @@ class AdminController {
         try {
             let np;
             if ( ! req.Utente ) {
-                np = await Utente.get(req.params.id);
+                np = await Utente.get(req.params.Id);
             } else {
                 np = req.Utente;
             }
@@ -84,7 +84,7 @@ class AdminController {
         try {
             let ns;
             if ( ! req.Utente ) {
-                ns = await Utente.get(req.params.id);
+                ns = await Utente.get(req.params.Id);
             } else {
                 ns = req.Utente;
             }
@@ -123,7 +123,7 @@ class AdminController {
     static async get (req,res) {
         let result;
         if ( ! req.Utente ) {
-            result = await Utente.get(req.params.id);
+            result = await Utente.get(req.params.Id);
         } else {
             result = req.Utente;
         }
@@ -132,7 +132,7 @@ class AdminController {
 
     static async elimina (req,res) {
         try {
-            if (await Utente.delete(req.params.id) ) {
+            if (await Utente.delete(req.params.Id) ) {
                 res.status(200).send('Ok');
             } else {
                 res.status(400).send ("Errore Cancellazione Utente");

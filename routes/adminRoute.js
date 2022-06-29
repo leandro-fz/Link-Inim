@@ -5,10 +5,10 @@ const adminController = require('../controller/adminController')
 //routerAdmin.get('/', adminController.lista)
 routerAdmin.get('/utenti', adminController.lista)
 routerAdmin.post('/utente/', adminController.creaUtente)
-routerAdmin.delete('/utente/:id', adminController.checkId , adminController.elimina)
-routerAdmin.get('/utente/:id', adminController.checkId, adminController.get);
-routerAdmin.put('/utente/:id', adminController.checkId, adminController.edit);
+routerAdmin.delete('/utente/:Id', adminController.checkId , adminController.elimina)
+routerAdmin.get('/utente/:Id', adminController.checkId, adminController.get);
+routerAdmin.put('/utente/:Id', adminController.checkId, adminController.edit);
 
-routerAdmin.get('/utente/setprof/:id', adminController.checkId, adminController.profPermission);
+routerAdmin.get('/utente/setprof/:Id', adminController.checkId, adminController.profPermission);
 
 module.exports = routerAdmin;
