@@ -10,14 +10,14 @@ class Utente {
             if (p.Email) this.Email = p.Email;
             if (p.Password) this.Password = p.Password;
             if (p.DataDiNascita) this.DataDiNascita = p.DataDiNascita;
-            if (p.Matching) this.Matching = p.Matching;
-            if (p.ProfEsterno) this.ProfEsterno = p.ProfEsterno;
-            if (p.Iban) this.Iban = p.Iban;
+            if (p.Matching !== null) this.Matching = p.Matching;
+            if (p.ProfEsterno!== null) this.ProfEsterno = p.ProfEsterno;
+            if (p.Iban !== null) this.Iban = p.Iban;
             if (p.ImmagineUrl) this.ImmagineUrl = p.ImmagineUrl;
             if (p.DataAssunzione) this.DataAssunzione = p.DataAssunzione;
-            if (p.IsAdmin) this.IsAdmin = p.IsAdmin;
-            if (p.IsDeleted) this.IsDeleted = p.IsDeleted;
-            if (p.IsProf) this.IsProf = p.IsProf;
+            if (p.IsAdmin!== null) this.IsAdmin = p.IsAdmin;
+            if (p.IsDeleted!== null) this.IsDeleted = p.IsDeleted;
+            if (p.IsProf !== null) this.IsProf = p.IsProf;
         }
     }
 
