@@ -53,7 +53,7 @@ class CoursesController {
             if (req.body.Durata) np.setDurata(req.body.Durata);
             if (req.body.Capitoli) np.setCapitoli(req.body.Capitoli);
             if (req.body.IdProf) np.setIdProf(req.body.IdProf);
-            if (req.body.IsDeleted) np.setIsDeleted(req.body.IsDeleted);
+            np.setIsDeleted(req.body.IsDeleted);
             await np.save();
             // return res.json({
             //     message: 'done'

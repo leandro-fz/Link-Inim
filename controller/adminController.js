@@ -1,6 +1,6 @@
 const Utente = require('../model/models/Utente')
 const { listaUtenti } = require('../model/dao/utenteDao')
-const { compare, hash } = require('bcrypt');
+const { hash } = require('bcrypt');
 
 
 class AdminController {
@@ -29,37 +29,37 @@ class AdminController {
         }            
     }
 
-    static async SetNewProf(req, res){
-        try {
-            let np;
-            if ( ! req.Utente ) {
-                np = await Utente.get(req.params.id);
-            } else {
-                np = req.Utente;
-            }
-            if (req.body.Nome) ns.setNome(req.body.Nome);
-            if (req.body.Cognome) ns.setCognome(req.body.Cognome);
-            if (req.body.CodFiscale) ns.setCodFiscale(req.body.CodFiscale);
-            if (req.body.Email) ns.setEmail(req.body.Email);
-            if (req.body.Password){
-                let newPassword = await hash(req.body.Password, 10);
-                ns.setPassword(newPassword);
-            } 
-            if (req.body.DataDiNascita) ns.setDataDiNascita(req.body.DataDiNascita);
-            if (req.body.Matching) ns.setMatching(req.body.Matching);
-            if (req.body.ProfEsterno) ns.setProfEsterno(req.body.ProfEsterno);
-            if (req.body.Iban) ns.setIban(req.body.Iban);
-            if (req.body.ImmagineUrl) ns.setImmagineUrl(req.body.ImmagineUrl);
-            if (req.body.IsAdmin) ns.setIsAdmin(req.body.IsAdmin);
-            if (req.body.DataAssunzione) ns.setDataAssunzione(req.body.DataAssunzione);
-            await  np.save();
-            res.status(200).send("Ok");
-        } catch (err) {
-            res.status(500).send ("Internal Server Error");
-        }
-    }
+    // static async SetNewProf(req, res){
+    //     try {
+    //         let np;
+    //         if ( ! req.Utente ) {
+    //             np = await Utente.get(req.params.id);
+    //         } else {
+    //             np = req.Utente;
+    //         }
+    //         if (req.body.Nome) ns.setNome(req.body.Nome);
+    //         if (req.body.Cognome) ns.setCognome(req.body.Cognome);
+    //         if (req.body.CodFisc) ns.setCodFisc(req.body.CodFisc);
+    //         if (req.body.Email) ns.setEmail(req.body.Email);
+    //         if (req.body.Password){
+    //             let newPassword = await hash(req.body.Password, 10);
+    //             ns.setPassword(newPassword);
+    //         } 
+    //         if (req.body.DataDiNascita) ns.setDataDiNascita(req.body.DataDiNascita);
+    //         if (req.body.Matching) ns.setMatching(req.body.Matching);
+    //         if (req.body.ProfEsterno) ns.setProfEsterno(req.body.ProfEsterno);
+    //         if (req.body.Iban) ns.setIban(req.body.Iban);
+    //         if (req.body.ImmagineUrl) ns.setImmagineUrl(req.body.ImmagineUrl);
+    //         if (req.body.IsAdmin) ns.setIsAdmin(req.body.IsAdmin);
+    //         if (req.body.DataAssunzione) ns.setDataAssunzione(req.body.DataAssunzione);
+    //         await  np.save();
+    //         res.status(200).send("Ok");
+    //     } catch (err) {
+    //         res.status(500).send ("Internal Server Error");
+    //     }
+    // }
 
-
+    //concede permessi di professore
     static async profPermission(req, res){
         try {
             let np;
@@ -68,23 +68,29 @@ class AdminController {
             } else {
                 np = req.Utente;
             }
-            np.set
+            let a = np.getIsProf()
+
+            //np.setIsProf(!a) //se true o false
+            a <= 0 ? np.setIsProf(1) : np.setIsProf(0)
+            np.save()
+            res.status(200).send("Ok");
+
         } catch (error) {
-            
+            res.status(500).send("Internal Server Error");
         }
     }
 
     static async edit (req,res) {
         try {
-            let np;
+            let ns;
             if ( ! req.Utente ) {
-                np = await Utente.get(req.params.id);
+                ns = await Utente.get(req.params.id);
             } else {
-                np = req.Utente;
+                ns = req.Utente;
             }
             if (req.body.Nome) ns.setNome(req.body.Nome);
             if (req.body.Cognome) ns.setCognome(req.body.Cognome);
-            if (req.body.CodFiscale) ns.setCodFiscale(req.body.CodFiscale);
+            if (req.body.CodFisc) ns.setCodFisc(req.body.CodFisc);
             if (req.body.Email) ns.setEmail(req.body.Email);
             if (req.body.Password){
                 let newPassword = await hash(req.body.Password, 10);
@@ -96,12 +102,14 @@ class AdminController {
             ns.setIban(req.body.Iban);
             if (req.body.ImmagineUrl) ns.setImmagineUrl(req.body.ImmagineUrl);
             ns.setIsAdmin(req.body.IsAdmin);
-            ns.IsDeleted( ( req.body.IsDeleted));
-            ns.IsProf( ( req.body.IsProf));
+            ns.setMatching(req.body.Matching)
+            ns.setIsDeleted(req.body.IsDeleted);
+            ns.setIsProf(req.body.IsProf);
             if (req.body.DataAssunzione) ns.setDataAssunzione(req.body.DataAssunzione);
-            await  np.save();
+            await  ns.save();
             res.status(200).send("Ok");
         } catch (err) {
+            console.log(err);
             res.status(500).send ("Internal Server Error");
         }
     }
@@ -141,7 +149,7 @@ class AdminController {
 
             if (req.body.Nome) ns.setNome(req.body.Nome);
             if (req.body.Cognome) ns.setCognome(req.body.Cognome);
-            if (req.body.CodFiscale) ns.setCodFiscale(req.body.CodFiscale);
+            if (req.body.CodFisc) ns.setCodFisc(req.body.CodFisc);
             if (req.body.Email) ns.setEmail(req.body.Email);
             if (req.body.Password){
                 let newPassword = await hash(req.body.Password, 10);
@@ -153,13 +161,14 @@ class AdminController {
             ns.setIban(req.body.Iban);
             if (req.body.ImmagineUrl) ns.setImmagineUrl(req.body.ImmagineUrl);
             ns.setIsAdmin(req.body.IsAdmin);
-            ns.setIsDeleted(req.body.isDeleted);
-            ns.IsProf( ( req.body.IsProf));
+            ns.setIsDeleted(req.body.IsDeleted);
+            ns.setIsProf(req.body.IsProf);
             if (req.body.DataAssunzione) ns.setDataAssunzione(req.body.DataAssunzione);
 
             await ns.save()
             res.status(201).send("Created");
-        } catch {
+        } catch(err) {
+            console.log(err);
             res.status(500).send("Internal Server Error");
         }
     }
