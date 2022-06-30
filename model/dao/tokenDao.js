@@ -9,7 +9,7 @@ async function getTokenByUtente(id_utente) {
   else { return rows[0] }
 }
 
-async function persistToken(token, IdUtente, exp = 1000 * 60 * 30, remind_me = 0) {
+async function persistToken(token, IdUtente, exp = 1000 * 60 * 60 * 24, remind_me = 0) {
   const conn = await getConnection();
   const date = new Date();
   const expno = date.getTime() + exp;
