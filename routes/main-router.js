@@ -1,15 +1,17 @@
 const routerLogin = require('./auth')
-const routerCorsi = require('./courses')
+const routerCorsi = require('./coursesRouter')
 const routerAdmin = require('./adminRoute.js')
-const routerHome = require('./adminRoute.js')
-const routerPost = require('./postRoute')
+
+const routerHome = require('./homeRoute.js')
+const routerProfile = require('./profileRoute.js')
+const controllaAutenticazione = require('../middlewares/checkAuth')
 
 function ConnectRouter(app){
     app.use('/login', routerLogin)
     app.use('/home', routerHome)
     app.use('/corsi', routerCorsi)
     app.use('/admin', routerAdmin )
-    app.use('/post', routerPost)
+    app.use('/profile',controllaAutenticazione, routerProfile )
 }
 
 module.exports = ConnectRouter;

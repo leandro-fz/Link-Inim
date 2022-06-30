@@ -3,20 +3,21 @@ const { getUtenteByEmailDAO, insertUtente, getUtenteById, utenteDeleteById , upd
 class Utente {
     constructor(p) {
         if (p) {
-            if (p.id) this.id = p.id;
+            if (p.Id) this.Id = p.Id;
             if (p.Nome) this.Nome = p.Nome;
             if (p.Cognome) this.Cognome = p.Cognome;
-            if (p.CodFiscale) this.CodFiscale = p.CodFiscale;
+            if (p.CodFisc) this.CodFisc = p.CodFisc;
             if (p.Email) this.Email = p.Email;
             if (p.Password) this.Password = p.Password;
             if (p.DataDiNascita) this.DataDiNascita = p.DataDiNascita;
-            if (p.Matching) this.Matching = p.Matching;
-            if (p.ProfEsterno) this.ProfEsterno = p.ProfEsterno;
-            if (p.Iban) this.Iban = p.Iban;
+            if (p.Matching !== null) this.Matching = p.Matching;
+            if (p.ProfEsterno!== null) this.ProfEsterno = p.ProfEsterno;
+            if (p.Iban !== null) this.Iban = p.Iban;
             if (p.ImmagineUrl) this.ImmagineUrl = p.ImmagineUrl;
             if (p.DataAssunzione) this.DataAssunzione = p.DataAssunzione;
-            if (p.IsAdmin) this.IsAdmin = p.IsAdmin;
-            if (p.IsDeleted) this.IsDeleted = p.IsDeleted;
+            if (p.IsAdmin!== null) this.IsAdmin = p.IsAdmin;
+            if (p.IsDeleted!== null) this.IsDeleted = p.IsDeleted;
+            if (p.IsProf !== null) this.IsProf = p.IsProf;
         }
     }
 
@@ -37,39 +38,39 @@ class Utente {
     //     return res;
     // }
 
-    static async get(id) {
-        let pf = await getUtenteById(id);
+    static async get(Id) {
+        let pf = await getUtenteById(Id);
         if (pf) { return new Utente(pf); }
         return null;
     }
 
-    // static async exists(id) {
-    //     return await utenteExistById(id);
+    // static async exists(Id) {
+    //     return await utenteExistById(Id);
     // }
 
-    // static async find(id) {
-    //     return await utenteExistById(id);
+    // static async find(Id) {
+    //     return await utenteExistById(Id);
     // }
 
-    static async delete(id) {
-        return await utenteDeleteById(id);
+    static async delete(Id) {
+        return await utenteDeleteById(Id);
     }
 
     // setId(x) {
     //     if (x == null || typeof (x) == 'undefined') throw 'Nome cannot be null';
-    //     this.id = x;
+    //     this.Id = x;
     // }
     getId() {
-        return this.id;
+        return this.Id;
     }
 
     setId(x) {
         if (x == null || typeof (x) == 'undefined') throw 'ID cannot be null';
-        this.id = x;
+        this.Id = x;
     }
 
     // existId() {
-    //     if (this.id == null || typeof (this.id) == 'undefined') return false;
+    //     if (this.Id == null || typeof (this.Id) == 'undefined') return false;
     //     return true;
     // }
     setNome(x) {
@@ -88,12 +89,12 @@ class Utente {
         return this.Cognome;
     }
 
-    setCodFiscale(x) {
+    setCodFisc(x) {
         if (x == null || typeof (x) == 'undefined') throw 'Codice Fiscale cannot be null';
-        this.CodFiscale = x;
+        this.CodFisc = x;
     }
-    getCodFiscale() {
-        return this.CodFiscale;
+    getCodFisc() {
+        return this.CodFisc;
     }
     setEmail(x) {
         if (x == null || typeof (x) == 'undefined') throw 'Email cannot be null';
@@ -104,10 +105,10 @@ class Utente {
     }
     setPassword(x) {
         if (x == null || typeof (x) == 'undefined') throw 'Password cannot be null';
-        this.password = x;
+        this.Password = x;
     }
     getPassword() {
-        return this.password;
+        return this.Password;
     }
     setDataDiNascita(x) {
         if (x == null || typeof (x) == 'undefined') throw 'Password cannot be null';
@@ -159,8 +160,18 @@ class Utente {
         this.IsDeleted = x;
     }
 
+
     getIsDeleted() {
         return this.IsDeleted;
+    }
+
+    getIsProf() {
+        return this.IsProf;
+    }
+    setIsProf(x) {
+        if (x == null || typeof (x) == 'undefined') throw 'IsProf cannot be null';
+
+        this.IsProf = x;
     }
 
     setDataAssunzione(x) {
@@ -172,14 +183,14 @@ class Utente {
     }
 
     async save() {
-        if (typeof (this.id) != 'undefined' && this.id != null) {
-            let res = await updateUtente(this.id, this.Nome, this.Cognome, this.CodFiscale, this.Email, this.Password, this.DataDiNascita, this.Matching, this.ProfEsterno, this.Iban, this.ImmagineUrl, this.DataAssunzione, this.IsAdmin, this.IsDeleted
+        if (typeof (this.Id) != 'undefined' && this.Id != null) {
+            let res = await updateUtente(this.Id, this.Nome, this.Cognome, this.CodFisc, this.Email, this.Password, this.DataDiNascita, this.Matching, this.ProfEsterno, this.Iban, this.ImmagineUrl, this.DataAssunzione, this.IsAdmin, this.IsDeleted, this.IsProf
             );
             if (!res) {
                 throw 'save Utente failed (update case).';
             }
         } else {
-            let res = await insertUtente(this.Nome, this.Cognome, this.CodFiscale, this.Email, this.Password, this.DataDiNascita, this.Matching, this.ProfEsterno, this.Iban, this.ImmagineUrl, this.DataAssunzione, this.IsAdmin, this.IsDeleted
+            let res = await insertUtente(this.Nome, this.Cognome, this.CodFisc, this.Email, this.Password, this.DataDiNascita, this.Matching, this.ProfEsterno, this.Iban, this.ImmagineUrl, this.DataAssunzione, this.IsAdmin, this.IsDeleted, this.IsProf
             );
             this.setId(res);
             if (!res) throw 'save Utente failed (insert case).';

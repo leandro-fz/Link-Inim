@@ -3,6 +3,31 @@ const Courses = require("../model/models/corsi");
 const { logger } = require('../common/logging')
 
 class CoursesController {
+
+    static async checkId (req,res,next) {
+        try {
+            if (req.params.idCorsi ) {
+                const eIntero = parseInt(req.params.idCorsi);
+                if(isNaN(eIntero)) {
+                  return res.status(400).send("id corsi non numerico");
+                }
+                let p;
+                p= await Courses.get(req.params.idCorsi);
+                if (p) {
+                    req.Courses=p;
+                    next();
+                }  else {
+                    return res.status(404).send ("Id corsi non trovato");                    
+                }               
+            } else {
+                return res.status(404).send("Id corsi NON Fornito");
+            }
+        } catch (err) {
+            return res.status(500).send ("Internal Server Error");
+        }            
+    }
+
+
     static async lista (req, res) {
         logger.debug("CorsoController Lista req.params.id:", req.params.id)
         let result = await listCourses();
@@ -13,10 +38,12 @@ class CoursesController {
         let result;
         logger.debug("CorsoController GET req.params.id:", req.params.id)
         if (! req.Courses) {
-            result = await Courses.get(req.params.id);
+            result = await Courses.get(req.params.idCorsi);
+            console.log(result);
         } else {
             result = req.Courses;
         }
+        console.log(result);
         return res.json(result);
     }
 
@@ -30,6 +57,7 @@ class CoursesController {
             if (req.body.Capitoli) np.setCapitoli(req.body.Capitoli);
             if (req.body.IdProf) np.setIdProf(req.body.IdProf);
             if (req.body.IsDeleted !== null) np.setIsDeleted(req.body.IsDeleted);
+
             await np.save();
             // return res.json({
             //     message: 'done'
@@ -46,7 +74,7 @@ class CoursesController {
         try {
             logger.debug ("CoursesController: update: body: ", req.body);
             let np = await Courses.get(req.params.id);
-            if (req.body.Titolo) np.setTitolo(req.body.Titolo);
+req.body.Titolo) np.setTitolo(req.body.Titolo);
             if (req.body.Specializzazione) np.setSpecializzazione(req.body.Specializzazione);
             if (req.body.Durata) np.setDurata(req.body.Durata);
             if (req.body.Capitoli) np.setCapitoli(req.body.Capitoli);
@@ -60,12 +88,13 @@ class CoursesController {
         } catch (e){
             logger.error ("ERRORE Update CorsiController:", e);
             res.status(500).send ("Internal Server Error");
+            console.log(e);
         }
     }
 
     static async delete (req, res) {
         try {
-            if (await Courses.delete(req.params.id)) {
+            if (await Courses.delete(req.params.idCorsi)) {
                 res.status(200).send('ok');
             } else {
                 res.status(400).send ("something went wrong");

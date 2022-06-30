@@ -13,8 +13,9 @@ const listCourses = async () => {
 
 const getCoursesById = async (id) => {
     const conn = await getConnection();
-    const query = `SELECT * FROM Corsi WHERE id = ?`;
+    const query = `SELECT * FROM Corsi WHERE Id = ?`;
     logger.debug('Query Singolo Corso:' + query);
+
     const [rows] = await conn.query(query, [id]);
     logger.debug('Query Singolo Corso Result:', rows[0]);
     return rows[0];
@@ -31,7 +32,7 @@ const updateCourses = async (Id, Titolo, Specializzazione, Durata, Capitoli, IdP
     const conn = await getConnection();
     const query = 'UPDATE Corsi SET Titolo = ?, Specializzazione = ?, Durata = ?, Capitoli = ?, IdProf = ?, IsDeleted = ? WHERE Id = ?';
     const [res] = await conn.query(query, [Titolo, Specializzazione, Durata, Capitoli, IdProf, IsDeleted, Id]);
-    // console.log(res);
+
     return res.affectedRows === 1;
 }
 
