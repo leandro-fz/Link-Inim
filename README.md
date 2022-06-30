@@ -3,21 +3,31 @@
 Progetto sviluppato per occasione dell'hackathon di fine corso.
 Migliora la produttività della tua azienda con Link-Inim
 
-###Indice
+### Indice
 * 1.[Installazione](#installazione)
 * 2.[Guida](#guida)
 * 3.[Rotte Backend](#rotte)
 * 4.[Software utilizzati](#software)
-* 5.[Autori[(#autori)
+* 5.[Autori](#autori)
 
 <a name="installazione"></a>
-##Installazione
+## Installazione
+Clonare il progetto su un ambiente di sviluppo o usare il comando seguente tramite prompt dei comandi usando 
+```
+git clone https://github.com/leandro-fz/Link-Inim
+```
+Una volta installata si dorà seguire il comando
+```
+npm install
+```
+per installare tutte le dipendenze necessarie.
+Si dovrà inoltre avviare il database 
 
 <a name="guida"></a>
-##Guida
+## Guida
 
 <a name="rotte"></a>
-##Rotte Backend
+## Rotte Backend
 
 <a name="software"></a>
 ## Software utilizzati
