@@ -1,5 +1,5 @@
-const { listCourses } = require("../model/dao/coursesDao");
-const { forcedExpirationToken, getTokenByUtente } = require("../model/dao/tokenDao");
+const { forcedExpirationToken } = require("../model/dao/tokenDao");
+const { hash } = require('bcrypt');
 const Utente = require("../model/models/utente");
 
 class UtenteController {
@@ -34,6 +34,7 @@ class UtenteController {
             await np.save();
             res.status(200).send("Password cambiata correttamente");
         } catch (error) {
+            console.log(error);
             res.status(500).send("Internal Server Error");
 
         }
