@@ -1,4 +1,4 @@
-const { listaNomiSpecializzazioni } = require("../model/dao/matchingDao");
+const { listaNomiSpecializzazioni, listaPersoneDisponibili } = require("../model/dao/matchingDao");
 
 
 
@@ -15,8 +15,7 @@ class MatchingController{
 
     static async listaUtentiDisponibili(req, res){
         try {
-            //req.params.Idspecializzazione
-            let result = await listaPersoneDisponibili(req.params.IdSpecializzazioni)
+            let result = await listaPersoneDisponibili(req.params.Idspecializzazione)
             return res.json(result).send();
         } catch (error) {
             console.log(error);
