@@ -58,11 +58,8 @@ class CoursesController {
             if (req.body.IdProf) np.setIdProf(req.body.IdProf);
             if (req.body.IsDeleted !== null) np.setIsDeleted(req.body.IsDeleted);
 
-            await np.save();
-            // return res.json({
-            //     message: 'done'
-            // }); 
-            res.status(200).send("Ok");
+            await np.save(); 
+            res.status(200).send("Corso inserito");
         } catch (e){
             logger.error ("ERRORE INSERT CorsiController:", e);
             res.status(500).send ("Internal Server Error");
@@ -81,10 +78,7 @@ class CoursesController {
             if (req.body.IdProf) np.setIdProf(req.body.IdProf);
             if (req.body.IsDeleted !== null) np.setIsDeleted(req.body.IsDeleted);
             await np.save();
-            // return res.json({
-            //     message: 'done'
-            // }); 
-            res.status(200).send("Ok");
+            res.status(200).send("Corso modificato");
         } catch (e){
             logger.error ("ERRORE Update CorsiController:", e);
             res.status(500).send ("Internal Server Error");
@@ -95,13 +89,10 @@ class CoursesController {
     static async delete (req, res) {
         try {
             if (await Courses.delete(req.params.idCorsi)) {
-                res.status(200).send('ok');
+                res.status(200).send('corso cancellato');
             } else {
                 res.status(400).send ("something went wrong");
             }
-        // return res.json({
-        //     message: 'successfully deleted'
-        // }); 
         } catch (e){
             logger.error ("ERRORE Delete CorsiController:", e);
             res.status(500).send ("Internal Server Error");

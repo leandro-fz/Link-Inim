@@ -10,9 +10,9 @@ const { CommentsController } = require('../controller/commentsController');
 
 routerCourses.get('/', CoursesController.lista);
 routerCourses.get('/:idCorsi', CoursesController.checkId, CoursesController.get);
-routerCourses.put('/:idCorsi', CoursesController.checkId, CoursesController.update);
-routerCourses.post('/', CoursesController.insert);
-routerCourses.delete('/:idCorsi', CoursesController.checkId, CoursesController.delete);
+routerCourses.put('/:idCorsi', CoursesController.checkId, CoursesController.update);//
+routerCourses.post('/', CoursesController.insert);//
+routerCourses.delete('/:idCorsi', CoursesController.checkId, CoursesController.delete);//
 
 routerCourses.get('/:idCorsi/commenti', CoursesController.checkId, CommentsController.lista);
 routerCourses.get('/:idCorsi/commenti/:idCommenti', CoursesController.checkId, CommentsController.checkId, CommentsController.get);

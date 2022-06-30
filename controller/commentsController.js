@@ -28,7 +28,6 @@ class CommentsController {
 
 
     static async lista (req, res) {
-        // console.log('trying operatore controller...')
         let result = await listComments();
         return res.json(result).send();
     }
