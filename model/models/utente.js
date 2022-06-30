@@ -34,14 +34,6 @@ class Utente {
         return null;
     }
 
-    // static async exists(Id) {
-    //     return await utenteExistById(Id);
-    // }
-
-    // static async find(Id) {
-    //     return await utenteExistById(Id);
-    // }
-
     static async delete(Id) {
         return await utenteDeleteById(Id);
     }
@@ -54,11 +46,7 @@ class Utente {
         if (x == null || typeof (x) == 'undefined') throw 'ID cannot be null';
         this.Id = x;
     }
-
-    // existId() {
-    //     if (this.Id == null || typeof (this.Id) == 'undefined') return false;
-    //     return true;
-    // }
+    
     setNome(x) {
         if (x == null || typeof (x) == 'undefined') throw 'Nome cannot be null';
         this.Nome = x;

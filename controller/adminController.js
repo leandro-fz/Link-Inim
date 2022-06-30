@@ -4,54 +4,55 @@ const { hash } = require('bcrypt');
 
 
 class AdminController {
-    static async checkId (req,res,next) {
+    //controlla se l'id fornito esiste
+    static async checkId(req, res, next) {
         try {
-            if (req.params.Id ) {
+            if (req.params.Id) {
                 const eIntero = parseInt(req.params.Id);
-                if(isNaN(eIntero)) {
-                  return res.status(400).send("Id non numerico");
+                if (isNaN(eIntero)) {
+                    return res.status(400).send("Id non numerico");
                 }
                 let p;
-                p= await Utente.get(req.params.Id);
+                p = await Utente.get(req.params.Id);
                 if (p) {
-                    req.Utente=p;
+                    req.Utente = p;
                     next();
-                }  else {
-                    return res.status(404).send ("Id non trovato");                    
-                }               
+                } else {
+                    return res.status(404).send("Id non trovato");
+                }
             } else {
                 return res.status(404).send("Id NON Fornito");
             }
         } catch (err) {
-            return res.status(500).send ("Internal Server Error");
-        }            
+            return res.status(500).send("Internal Server Error");
+        }
     }
 
     //concede permessi di professore
-    static async profPermission(req, res){
+    static async profPermission(req, res) {
         try {
             let np;
-            if ( ! req.Utente ) {
+            if (!req.Utente) {
                 np = await Utente.get(req.params.Id);
             } else {
                 np = req.Utente;
             }
             let a = np.getIsProf()
 
-            //np.setIsProf(!a) //se true o false
             a <= 0 ? np.setIsProf(1) : np.setIsProf(0)
             np.save()
-            res.status(200).send("Ok");
+            res.status(200).send("utente selezionato ha ora i privilegi di professore");
 
         } catch (error) {
             res.status(500).send("Internal Server Error");
         }
     }
 
-    static async edit (req,res) {
+    //per la modifica di tutti i parametri
+    static async edit(req, res) {
         try {
             let ns;
-            if ( ! req.Utente ) {
+            if (!req.Utente) {
                 ns = await Utente.get(req.params.Id);
             } else {
                 ns = req.Utente;
@@ -60,10 +61,10 @@ class AdminController {
             if (req.body.Cognome) ns.setCognome(req.body.Cognome);
             if (req.body.CodFisc) ns.setCodFisc(req.body.CodFisc);
             if (req.body.Email) ns.setEmail(req.body.Email);
-            if (req.body.Password){
+            if (req.body.Password) {
                 let newPassword = await hash(req.body.Password, 10);
                 ns.setPassword(newPassword);
-            } 
+            }
             if (req.body.DataDiNascita) ns.setDataDiNascita(req.body.DataDiNascita);
             ns.setMatching(req.body.Matching);
             ns.setProfEsterno(req.body.ProfEsterno);
@@ -74,43 +75,55 @@ class AdminController {
             ns.setIsDeleted(req.body.IsDeleted);
             ns.setIsProf(req.body.IsProf);
             if (req.body.DataAssunzione) ns.setDataAssunzione(req.body.DataAssunzione);
-            await  ns.save();
-            res.status(200).send("Ok");
+            await ns.save();
+            res.status(200).send("parametri utente modificati");
         } catch (err) {
             console.log(err);
-            res.status(500).send ("Internal Server Error");
+            res.status(500).send("Internal Server Error");
         }
     }
 
-
+    //restituisce lista di tutti i dipendenti
     static async lista(req, res) {
-        const listaUt = await listaUtenti();
-        return res.json(listaUt).send()
-    }
-
-    static async get (req,res) {
-        let result;
-        if ( ! req.Utente ) {
-            result = await Utente.get(req.params.Id);
-        } else {
-            result = req.Utente;
-        }
-        return res.json(result);
-    }
-
-    static async elimina (req,res) {
         try {
-            if (await Utente.delete(req.params.Id) ) {
-                res.status(200).send('Ok');
+            const listaUt = await listaUtenti();
+            return res.json(listaUt).send()
+        } catch (error) {
+            console.log(err);
+            res.status(500).send("Internal Server Error");
+        }
+    }
+
+    static async get(req, res) {
+        try {
+            let result;
+            if (!req.Utente) {
+                result = await Utente.get(req.params.Id);
             } else {
-                res.status(400).send ("Errore Cancellazione Utente");
+                result = req.Utente;
+            }
+            return res.json(result);
+        } catch (error) {
+            console.log(err);
+            res.status(500).send("Internal Server Error");
+        }
+
+    }
+
+    //eliminazione di un utente
+    static async elimina(req, res) {
+        try {
+            if (await Utente.delete(req.params.Id)) {
+                res.status(200).send('utente eleiminato correttamente');
+            } else {
+                res.status(400).send("Errore Cancellazione Utente");
             }
         } catch (err) {
             res.status(500).send("Internal Server Error");
         }
     }
 
-
+    //creazione di un utente
     static async creaUtente(req, res) {
         try {
             let ns = new Utente();
@@ -119,10 +132,10 @@ class AdminController {
             if (req.body.Cognome) ns.setCognome(req.body.Cognome);
             if (req.body.CodFisc) ns.setCodFisc(req.body.CodFisc);
             if (req.body.Email) ns.setEmail(req.body.Email);
-            if (req.body.Password){
+            if (req.body.Password) {
                 let newPassword = await hash(req.body.Password, 10);
                 ns.setPassword(newPassword);
-            } 
+            }
             if (req.body.DataDiNascita) ns.setDataDiNascita(req.body.DataDiNascita);
             ns.setMatching(req.body.Matching);
             ns.setProfEsterno(req.body.ProfEsterno);
@@ -135,7 +148,7 @@ class AdminController {
 
             await ns.save()
             res.status(201).send("Created");
-        } catch(err) {
+        } catch (err) {
             console.log(err);
             res.status(500).send("Internal Server Error");
         }
