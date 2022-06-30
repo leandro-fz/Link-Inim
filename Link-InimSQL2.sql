@@ -97,3 +97,111 @@ ADD CONSTRAINT `Corsi.Specializzazione`
     FROM linkinim.commentipost  
     LEFT JOIN linkinim.utenti ON linkinim.commentipost.IdUtente = linkinim.utenti.Id
     WHERE linkinim.commentipost.Id = 1;
+    
+    SELECT Nome, Cognome, Email FROM linkinim.utenti as UT LEFT JOIN linkinim.utentispecializzazioni as US on UT.Id = US.IdUtente
+where US.IdSpecializzazione = 3;
+
+
+
+SELECT Nome, Cognome, Email FROM linkinim.utenti as UT LEFT JOIN linkinim.utentispecializzazioni as US on UT.Id = US.IdUtente
+where US.IdSpecializzazione = (SELECT Id from linkinim.specializzazioni WHERE Nome = "Brevetti"); 
+
+
+
+
+SELECT Id, Nome, Cognome, Email FROM 
+(SELECT UT.Id, Nome, Cognome, Email, Matching FROM linkinim.utenti as UT LEFT JOIN linkinim.utentispecializzazioni as US on UT.Id = US.IdUtente
+WHERE US.IdSpecializzazione = 3) as users WHERE users.matching = 1; 
+
+
+
+
+SELECT Id, Nome, Cognome, Email FROM 
+(SELECT UT.Id, Nome, Cognome, Email, Matching FROM linkinim.utenti as UT LEFT JOIN linkinim.utentispecializzazioni as US on UT.Id = US.IdUtente
+WHERE US.IdSpecializzazione = (SELECT Id from linkinim.specializzazioni WHERE Nome = "Frontend React")) as users WHERE users.matching = 1; 
+
+
+
+SELECT Nome from linkinim.specializzazioni WHERE Id = 2;
+
+SELECT Id from linkinim.specializzazioni WHERE Nome = "Brevetti";
+
+SELECT * from linkinim.commenticorsi;
+SELECT * from linkinim.corsi;
+DELETE FROM linkinim.corsi WHERE id = 2;
+
+SELECT * FROM linkinim.utenti;
+
+INSERT INTO `linkinim`.`commenticorsi` (`Id`, `IdUtente`, `Testo`, `Datetime`, `IdCorso`) VALUES (2, '2', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer vitae.', '2022-06-30', '2');
+INSERT INTO `linkinim`.`commenticorsi` (`Id`, `IdUtente`, `Testo`, `Datetime`, `IdCorso`) VALUES (3, '2', 'Integer urna quam, porttitor nec nunc eu, ultricies ultricies ipsum.', '2022-06-30', '3');
+INSERT INTO `linkinim`.`commenticorsi` (`Id`, `IdUtente`, `Testo`, `Datetime`, `IdCorso`) VALUES (4, '37', 'Etiam id placerat lorem, viverra tempor turpis. Curabitur id.', '2022-06-30', '4');
+INSERT INTO `linkinim`.`commenticorsi` (`Id`, `IdUtente`, `Testo`, `Datetime`, `IdCorso`) VALUES (5, '29', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.', '2022-06-30', '5');
+INSERT INTO `linkinim`.`commenticorsi` (`Id`, `IdUtente`, `Testo`, `Datetime`, `IdCorso`) VALUES (6, '10', 'Duis sed ligula vel nisl euismod mollis nec quis sapien. ', '2022-06-30', '2');
+INSERT INTO `linkinim`.`commenticorsi` (`Id`, `IdUtente`, `Testo`, `Datetime`, `IdCorso`) VALUES (7, '73', 'Nulla egestas erat sit amet pellentesque dignissim.', '2022-06-30', '3');
+INSERT INTO `linkinim`.`commenticorsi` (`Id`, `IdUtente`, `Testo`, `Datetime`, `IdCorso`) VALUES (8, '31', 'Integer quis vulputate massa, eget placerat ex.', '2022-06-30', '4');
+INSERT INTO `linkinim`.`commenticorsi` (`Id`, `IdUtente`, `Testo`, `Datetime`, `IdCorso`) VALUES (9, '8', 'Aliquam in augue quis ligula porta posuere.', '2022-06-30', '5');
+INSERT INTO `linkinim`.`commenticorsi` (`Id`, `IdUtente`, `Testo`, `Datetime`, `IdCorso`) VALUES (10, '55', 'Fusce leo tellus, maximus nec metus eget, facilisis accumsan sem. Aliquam.', '2022-06-30', '1');
+INSERT INTO `linkinim`.`commenticorsi` (`Id`, `IdUtente`, `Testo`, `Datetime`, `IdCorso`) VALUES (11, '43', 'Phasellus faucibus orci a vehicula suscipit. Maecenas consectetur vehicula quam.', '2022-06-30', '10');
+
+INSERT INTO `linkinim`.`corsi` (`Id`, `IdProf`, `Titolo`, `Specializzazione`, `Durata`, `Capitoli`, `IsDeleted`) VALUES (1, '2', 'Corso React', 10, '300', '12', '0');
+INSERT INTO `linkinim`.`corsi` (`Id`, `IdProf`, `Titolo`, `Specializzazione`, `Durata`, `Capitoli`, `IsDeleted`) VALUES (3, '2', 'Corso Risorse Umane', 7, '200', '5', '0');
+INSERT INTO `linkinim`.`corsi` (`Id`, `IdProf`, `Titolo`, `Specializzazione`, `Durata`, `Capitoli`, `IsDeleted`) VALUES (4, '2', 'Corso NodeJS', 13, '300', '12', '0');
+INSERT INTO `linkinim`.`corsi` (`Id`, `IdProf`, `Titolo`, `Specializzazione`, `Durata`, `Capitoli`, `IsDeleted`) VALUES (5, '2', 'Corso Firmwarista', 16, '500', '18', '0');
+INSERT INTO `linkinim`.`corsi` (`Id`, `IdProf`, `Titolo`, `Specializzazione`, `Durata`, `Capitoli`, `IsDeleted`) VALUES (6, '2', 'Corso Angular', 11, '300', '12', '0');
+INSERT INTO `linkinim`.`corsi` (`Id`, `IdProf`, `Titolo`, `Specializzazione`, `Durata`, `Capitoli`, `IsDeleted`) VALUES (7, '2', 'Corso Firmwarista', 15, '300', '12', '0');
+INSERT INTO `linkinim`.`corsi` (`Id`, `IdProf`, `Titolo`, `Specializzazione`, `Durata`, `Capitoli`, `IsDeleted`) VALUES (8, '2', 'Corso Big Data', 9, '600', '24', '0');
+INSERT INTO `linkinim`.`corsi` (`Id`, `IdProf`, `Titolo`, `Specializzazione`, `Durata`, `Capitoli`, `IsDeleted`) VALUES (9, '2', 'Corso Designer', 4, '300', '12', '0');
+INSERT INTO `linkinim`.`corsi` (`Id`, `IdProf`, `Titolo`, `Specializzazione`, `Durata`, `Capitoli`, `IsDeleted`) VALUES (10, '2', 'Corso Designer', 5, '300', '12', '0');
+
+INSERT INTO `linkinim`.`post` (`Id`, `Testo`, `Datetime`, `IdUtente`) VALUES (2, 'Aliquam in augue quis ligula porta posuere.', '2022-06-30', 40);
+INSERT INTO `linkinim`.`post` (`Id`, `Testo`, `Datetime`, `IdUtente`) VALUES (3, 'Phasellus faucibus orci a vehicula suscipit. Maecenas consectetur vehicula quam.', '2022-06-30', 21);
+INSERT INTO `linkinim`.`post` (`Id`, `Testo`, `Datetime`, `IdUtente`) VALUES (4, 'Duis sed ligula vel nisl euismod mollis nec quis sapien.', '2022-06-30', 65);
+INSERT INTO `linkinim`.`post` (`Id`, `Testo`, `Datetime`, `IdUtente`) VALUES (5, 'Fusce leo tellus, maximus nec metus eget, facilisis accumsan sem. Aliquam.', '2022-06-30', 82);
+INSERT INTO `linkinim`.`post` (`Id`, `Testo`, `Datetime`, `IdUtente`) VALUES (6, 'AInteger urna quam, porttitor nec nunc eu, ultricies ultricies ipsum.', '2022-06-30', 90);
+INSERT INTO `linkinim`.`post` (`Id`, `Testo`, `Datetime`, `IdUtente`) VALUES (7, 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.', '2022-06-30', 3);
+INSERT INTO `linkinim`.`post` (`Id`, `Testo`, `Datetime`, `IdUtente`) VALUES (8, 'Etiam id placerat lorem, viverra tempor turpis. Curabitur id.', '2022-06-30', 12);
+INSERT INTO `linkinim`.`post` (`Id`, `Testo`, `Datetime`, `IdUtente`) VALUES (9, 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer vitae.', '2022-06-30', 53);
+INSERT INTO `linkinim`.`post` (`Id`, `Testo`, `Datetime`, `IdUtente`) VALUES (10, 'Nulla egestas erat sit amet pellentesque dignissim.', '2022-06-30', 70);
+UPDATE linkinim.post SET `Id` = 1, `Testo` = 'Curabitur id.', `Datetime` = '2022-06-30', `IdUtente` = 1 WHERE id = 1;
+
+SELECT * FROM linkinim.post;
+DELETE FROM linkinim.post WHERE Id = 1;
+
+INSERT INTO `linkinim`.`commentipost` (`Id`, `IdUtente`, `Testo`, `Datetime`, `IdPost`, `IdCommento`) VALUES (2, '8', 'Aliquam in augue quis ligula porta posuere.', '2022-06-30', '6', null);
+INSERT INTO `linkinim`.`commentipost` (`Id`, `IdUtente`, `Testo`, `Datetime`, `IdPost`, `IdCommento`) VALUES (3, '15', 'Integer urna quam, porttitor nec nunc eu, ultricies ultricies ipsum.', '2022-06-30', '2', null);
+INSERT INTO `linkinim`.`commentipost` (`Id`, `IdUtente`, `Testo`, `Datetime`, `IdPost`, `IdCommento`) VALUES (4, '45', 'Etiam id placerat lorem, viverra tempor turpis. Curabitur id.', '2022-06-30', '8', null);
+INSERT INTO `linkinim`.`commentipost` (`Id`, `IdUtente`, `Testo`, `Datetime`, `IdPost`, `IdCommento`) VALUES (5, '89', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.', '2022-06-30', '1', null);
+INSERT INTO `linkinim`.`commentipost` (`Id`, `IdUtente`, `Testo`, `Datetime`, `IdPost`, `IdCommento`) VALUES (6, '12', 'Duis sed ligula vel nisl euismod mollis nec quis sapien.', '2022-06-30', '7', null);
+INSERT INTO `linkinim`.`commentipost` (`Id`, `IdUtente`, `Testo`, `Datetime`, `IdPost`, `IdCommento`) VALUES (7, '40', 'Nulla egestas erat sit amet pellentesque dignissim.', '2022-06-30', '5', null);
+INSERT INTO `linkinim`.`commentipost` (`Id`, `IdUtente`, `Testo`, `Datetime`, `IdPost`, `IdCommento`) VALUES (8, '30', 'Integer quis vulputate massa, eget placerat ex.', '2022-06-30', '4', null);
+INSERT INTO `linkinim`.`commentipost` (`Id`, `IdUtente`, `Testo`, `Datetime`, `IdPost`, `IdCommento`) VALUES (9, '29', 'Fusce leo tellus, maximus nec metus eget, facilisis accumsan sem. Aliquam.', '2022-06-30', '9', null);
+INSERT INTO `linkinim`.`commentipost` (`Id`, `IdUtente`, `Testo`, `Datetime`, `IdPost`, `IdCommento`) VALUES (10, '76', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer vitae.', '2022-06-30', '10', null);
+UPDATE linkinim.commentipost SET `Id` = 1, `IdUtente` = '101', `Testo` = 'Curabitur id.', `Datetime` = '2022-06-30', `IdPost` = 1, `IdCommento` = null WHERE id = 1;
+
+SELECT * FROM linkinim.commentipost;
+DELETE FROM linkinim.commentipost WHERE Id = 1;
+
+INSERT INTO `linkinim`.`quiz` (`Id`, `IdCorso`, `Domanda`, `RispostaCorretta`, `RispostaErrata1`, `RispostaErrata2`, `RispostaErrata3`) VALUES (3, 4, 'Nulla egestas erat sit amet pellentesque dignissim.', 'Corretta', 'Errata1', 'Errata2', 'Errata3');
+INSERT INTO `linkinim`.`quiz` (`Id`, `IdCorso`, `Domanda`, `RispostaCorretta`, `RispostaErrata1`, `RispostaErrata2`, `RispostaErrata3`) VALUES (4, 8, 'Aliquam in augue quis ligula porta posuere.', 'Corretta', 'Errata1', 'Errata2', 'Errata3');
+INSERT INTO `linkinim`.`quiz` (`Id`, `IdCorso`, `Domanda`, `RispostaCorretta`, `RispostaErrata1`, `RispostaErrata2`, `RispostaErrata3`) VALUES (5, 2, 'Integer urna quam, porttitor nec nunc eu, ultricies ultricies ipsum.', 'Corretta', 'Errata1', 'Errata2', 'Errata3');
+INSERT INTO `linkinim`.`quiz` (`Id`, `IdCorso`, `Domanda`, `RispostaCorretta`, `RispostaErrata1`, `RispostaErrata2`, `RispostaErrata3`) VALUES (6, 5, 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.', 'Corretta', 'Errata1', 'Errata2', 'Errata3');
+INSERT INTO `linkinim`.`quiz` (`Id`, `IdCorso`, `Domanda`, `RispostaCorretta`, `RispostaErrata1`, `RispostaErrata2`, `RispostaErrata3`) VALUES (7, 10, 'Duis sed ligula vel nisl euismod mollis nec quis sapien.', 'Corretta', 'Errata1', 'Errata2', 'Errata3');
+INSERT INTO `linkinim`.`quiz` (`Id`, `IdCorso`, `Domanda`, `RispostaCorretta`, `RispostaErrata1`, `RispostaErrata2`, `RispostaErrata3`) VALUES (8, 1, 'Integer quis vulputate massa, eget placerat ex.', 'Corretta', 'Errata1', 'Errata2', 'Errata3');
+INSERT INTO `linkinim`.`quiz` (`Id`, `IdCorso`, `Domanda`, `RispostaCorretta`, `RispostaErrata1`, `RispostaErrata2`, `RispostaErrata3`) VALUES (9, 6, 'Fusce leo tellus, maximus nec metus eget, facilisis accumsan sem. Aliquam.', 'Corretta', 'Errata1', 'Errata2', 'Errata3');
+INSERT INTO `linkinim`.`quiz` (`Id`, `IdCorso`, `Domanda`, `RispostaCorretta`, `RispostaErrata1`, `RispostaErrata2`, `RispostaErrata3`) VALUES (10, 7, 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer vitae.', 'Corretta', 'Errata1', 'Errata2', 'Errata3');
+UPDATE `linkinim`.`quiz` SET `Id` = 1, `IdCorso` = 5, `Domanda` = 'Lorem Ipsum', `RispostaCorretta` = 'Corretta', `RispostaErrata1` = 'Errata1', `RispostaErrata2` = 'Errata2', `RispostaErrata3` = 'Errata3' WHERE Id = 1;
+UPDATE `linkinim`.`quiz` SET `Id` = 2, `IdCorso` = 9, `Domanda` = 'Curabitur id', `RispostaCorretta` = 'Corretta', `RispostaErrata1` = 'Errata1', `RispostaErrata2` = 'Errata2', `RispostaErrata3` = 'Errata3' WHERE Id = 2;
+
+SELECT * FROM linkinim.specializzazioni;
+SELECT * FROM linkinim.settori;
+SELECT * FROM linkinim.quiz;
+
+ALTER TABLE `linkinim`.`corsi` 
+ADD INDEX `Corsi.Specializzazione_idx` (`Specializzazione` ASC) VISIBLE;
+;
+ALTER TABLE `linkinim`.`corsi` 
+ADD CONSTRAINT `Corsi.Specializzazione`
+  FOREIGN KEY (`Specializzazione`)
+  REFERENCES `linkinim`.`specializzazioni` (`Id`)
+  ON DELETE NO ACTION
+  ON UPDATE NO ACTION;
