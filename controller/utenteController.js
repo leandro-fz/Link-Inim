@@ -29,10 +29,10 @@ class UtenteController {
             }
             if (req.body.Password){
                 let newPassword = await hash(req.body.Password, 10);
-                ns.setPassword(newPassword);
+                np.setPassword(newPassword);
             }
             await np.save();
-            res.status(200).send("Ok");
+            res.status(200).send("Password cambiata correttamente");
         } catch (error) {
             res.status(500).send("Internal Server Error");
 
@@ -68,7 +68,7 @@ class UtenteController {
             } else {
                 np = req.Utente;
             }
-            np.setMatching(req.body.Matching)
+            np.Matching <= 0 ? np.setMatching(1) : np.setMatching(0)
             await np.save();
             res.status(200).send("Ok");
         } catch (error) {

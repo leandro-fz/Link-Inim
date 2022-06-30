@@ -10,6 +10,7 @@ routerHome.put('/post/:id', PostController.update ) //modifica post specifico
 routerHome.delete('/post/:id', PostController.delete ) //elimina post specifico
 
 routerHome.get('/matching/specializzazioni', MatchingController.getNomiSpecializzazioni )//nomi di tutte specializzazioni
- 
+routerHome.get('/matching/:Idspacializzazione')
+
 
 module.exports = routerHome;

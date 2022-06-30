@@ -28,16 +28,6 @@ class Utente {
         return obj
     }
 
-    // static async lista() {
-    //     let listaOperatoriDAO = await listaOperatore();
-    //     let res = [];
-
-    //     listaOperatoriDAO.forEach(e => {
-    //         res.push(new Operatore(e));
-    //     });
-    //     return res;
-    // }
-
     static async get(Id) {
         let pf = await getUtenteById(Id);
         if (pf) { return new Utente(pf); }
@@ -56,10 +46,6 @@ class Utente {
         return await utenteDeleteById(Id);
     }
 
-    // setId(x) {
-    //     if (x == null || typeof (x) == 'undefined') throw 'Nome cannot be null';
-    //     this.Id = x;
-    // }
     getId() {
         return this.Id;
     }
