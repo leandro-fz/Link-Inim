@@ -12,7 +12,7 @@ const getQuizById = async (Id) => {
     const query = `SELECT * FROM Quiz WHERE Id = ?`;
     const [rows] = await conn.query(query, [Id]);
     return rows[0];
-  }
+}
 
 const insertQuiz = async (IdCorso, Domanda, RispostaCorretta, RispostaErrata1, RispostaErrata2, RispostaErrata3) => {
     const conn = await getConnection();
@@ -33,7 +33,7 @@ const deleteQuiz = async (Id) => {
     const query = 'DELETE FROM Quiz WHERE Id = ?';
     const [res] = await conn.query(query, [Id]);
     return res.affectedRows === 1;
-  }
+}
 
 module.exports = {
     listQuiz,

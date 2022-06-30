@@ -10,18 +10,18 @@ routerAuth.post('/', async (req, res) => {
     const utente = await Utente.getUtenteByEmail(email);
     if (await compare(password, utente.getPassword())) {
       let token = await getTokenByUtente(utente.Id)
-      if (token === null || token === undefined){
+      if (token === null || token === undefined) {
         let token = await generatorToken(utente.Id)
         return res.json({
           token: token
         }).send()
-      }else{
+      } else {
         const validity = await validateToken(token.token)
-        if(validity){
+        if (validity) {
           return res.json({
-           token:  token.token
+            token: token.token
           }).send()
-        }else{
+        } else {
           const _ = await deleteToken(token.token)
           try {
             token = await generatorToken(utente.Id)
@@ -32,13 +32,14 @@ routerAuth.post('/', async (req, res) => {
             token: token
           }).send()
         }
-      }}
-    }catch (error) {
-        return res.status(403).json({
-          messaggio: 'login failed'
-      })
+      }
     }
+  } catch (error) {
+    return res.status(403).json({
+      messaggio: 'login failed'
+    })
   }
+}
 );
 
 module.exports = routerAuth;

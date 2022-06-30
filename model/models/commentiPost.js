@@ -14,7 +14,7 @@ class CommentiPost {
     }
 
     // restituisce la lista di tutti i commenti al post
-    static async lista () {
+    static async lista() {
         let listaCommentiDAO = await listCommentiPost();
         let res = [];
         listaCommentiDAO.forEach(e => {

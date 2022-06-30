@@ -3,6 +3,7 @@ const { hash } = require('bcrypt');
 const Utente = require("../model/models/utente");
 
 class UtenteController {
+    //visualizza profilo personale
     static async myProfile(req, res) {
         try {
             let result;
@@ -19,15 +20,16 @@ class UtenteController {
 
     }
 
+    //cambia la password
     static async cambiaPassword(req, res) {
         try {
             let np;
-            if ( !req.Utente ) {
+            if (!req.Utente) {
                 np = await Utente.get(req.idUtenteLogged);
             } else {
                 np = req.Utente;
             }
-            if (req.body.Password){
+            if (req.body.Password) {
                 let newPassword = await hash(req.body.Password, 10);
                 np.setPassword(newPassword);
             }
@@ -40,16 +42,16 @@ class UtenteController {
         }
     }
 
-
+    //effettua il logout
     static async logout(req, res) {
         try {
             let np;
-            if ( !req.Utente ) {
+            if (!req.Utente) {
                 np = await Utente.get(req.idUtenteLogged);
             } else {
                 np = req.Utente;
             }
-            let res2 = await forcedExpirationToken(req.idUtenteLogged, req.actualToken, 0, 0 )
+            let res2 = await forcedExpirationToken(req.idUtenteLogged, req.actualToken, 0, 0)
             if (!res2) {
                 res.status(500).send("Internal Server Error Token");
             }
@@ -61,10 +63,12 @@ class UtenteController {
         }
     }
 
+
+    //cambia lo stato di disponibilità
     static async cambiaMatching(req, res) {
         try {
             let np;
-            if ( ! req.Utente ) {
+            if (!req.Utente) {
                 np = await Utente.get(req.idUtenteLogged);
             } else {
                 np = req.Utente;

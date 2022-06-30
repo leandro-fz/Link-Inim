@@ -1,4 +1,4 @@
-const { listCourses, insertCourses, getCoursesById, deleteCourses, updateCourses} = require('../dao/coursesDao');
+const { listCourses, insertCourses, getCoursesById, deleteCourses, updateCourses } = require('../dao/coursesDao');
 const { logger } = require('../../common/logging')
 
 class Courses {
@@ -18,7 +18,7 @@ class Courses {
 
 
     // restituisce la lista di tutti i corsi
-    static async lista () {
+    static async lista() {
         let listaCorsiDAO = await listCourses();
         let res = [];
         listaCorsiDAO.forEach(e => {

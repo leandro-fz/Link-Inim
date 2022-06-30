@@ -1,4 +1,4 @@
-const { listPost, insertPost, getPostById, deletePost, updatePost} = require('../dao/postDao');
+const { listPost, insertPost, getPostById, deletePost, updatePost } = require('../dao/postDao');
 
 
 class Post {
@@ -12,7 +12,7 @@ class Post {
     }
 
     // restituisce la lista di tutti i post
-    static async lista () {
+    static async lista() {
         let listaPostDAO = await listPost();
         let res = [];
         listaPostDAO.forEach(e => {
@@ -69,7 +69,7 @@ class Post {
     getIdUtente() {
         return this.IdUtente;
     }
-  
+
     // crea un nuovo post e modifica un post esistente
     async save() {
         if (typeof (this.Id) != 'undefined' && this.Id != null) {

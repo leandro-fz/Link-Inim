@@ -1,4 +1,4 @@
-const { getUtenteByEmailDAO, insertUtente, getUtenteById, utenteDeleteById , updateUtente} = require('../dao/utenteDao');
+const { getUtenteByEmailDAO, insertUtente, getUtenteById, utenteDeleteById, updateUtente } = require('../dao/utenteDao');
 
 class Utente {
     constructor(p) {
@@ -11,12 +11,12 @@ class Utente {
             if (p.Password) this.Password = p.Password;
             if (p.DataDiNascita) this.DataDiNascita = p.DataDiNascita;
             if (p.Matching !== null) this.Matching = p.Matching;
-            if (p.ProfEsterno!== null) this.ProfEsterno = p.ProfEsterno;
+            if (p.ProfEsterno !== null) this.ProfEsterno = p.ProfEsterno;
             if (p.Iban !== null) this.Iban = p.Iban;
             if (p.ImmagineUrl) this.ImmagineUrl = p.ImmagineUrl;
             if (p.DataAssunzione) this.DataAssunzione = p.DataAssunzione;
-            if (p.IsAdmin!== null) this.IsAdmin = p.IsAdmin;
-            if (p.IsDeleted!== null) this.IsDeleted = p.IsDeleted;
+            if (p.IsAdmin !== null) this.IsAdmin = p.IsAdmin;
+            if (p.IsDeleted !== null) this.IsDeleted = p.IsDeleted;
             if (p.IsProf !== null) this.IsProf = p.IsProf;
         }
     }
@@ -46,7 +46,7 @@ class Utente {
         if (x == null || typeof (x) == 'undefined') throw 'ID cannot be null';
         this.Id = x;
     }
-    
+
     setNome(x) {
         if (x == null || typeof (x) == 'undefined') throw 'Nome cannot be null';
         this.Nome = x;
