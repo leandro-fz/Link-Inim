@@ -22,7 +22,7 @@ async function controllaAutenticazione(req, res, next) {
     //accedi al dao di utente, prendi il dto se is prof ù disponibile
     //e lo salvi in unanuova variabile
     //let isproftrue = await meto  dao di utente
-    //req.isprofpermission = isproftrue
+    //if <0 
     req.idUtenteLogged = idUtenteLogged;
     req.actualToken = token;
     next();
