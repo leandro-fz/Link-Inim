@@ -3,6 +3,30 @@ const Post = require("../model/models/post");console
 const { logger } = require('../common/logging')
 
 class PostController {
+
+    static async checkId (req,res,next) {
+        try {
+            if (req.params.idPost ) {
+                const eIntero = parseInt(req.params.idPost);
+                if(isNaN(eIntero)) {
+                  return res.status(400).send("id post non numerico");
+                }
+                let p;
+                p= await Post.get(req.params.idPost);
+                if (p) {
+                    req.Post=p;
+                    next();
+                }  else {
+                    return res.status(404).send ("Id post non trovato");                    
+                }               
+            } else {
+                return res.status(404).send("Id post NON Fornito");
+            }
+        } catch (err) {
+            return res.status(500).send ("Internal Server Error");
+        }            
+    }
+
     static async lista (req, res) {
         let result = await listPost();
         logger.debug("PostController Lista ", result)
@@ -26,7 +50,7 @@ class PostController {
             let np = new Post();
             if (req.body.Testo) np.setTesto(req.body.Testo);
             np.setDatetime( new Date());
-            if (req.body.IdUtente) np.setIdUtente(req.body.IdUtente);
+            np.setIdUtente(req.idUtenteLogged);
             await np.save();
             res.status(200).send("Ok");
         } catch (e){
@@ -42,7 +66,7 @@ class PostController {
             let np = await Post.get(req.params.id);
             if (req.body.Testo) np.setTesto(req.body.Testo);
             np.setDatetime( new Date());
-            if (req.body.IdUtente) np.setIdUtente(req.body.IdUtente);
+            np.setIdUtente(req.idUtenteLogged);
             logger.debug ("PostController: UPDATE: Salvo post aggiornato: ", np);
             await np.save();
           
