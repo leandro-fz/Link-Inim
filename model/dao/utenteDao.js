@@ -13,7 +13,13 @@ async function utenteDeleteById(id_utente) {
   return res.affectedRows === 1;
 }
 
-
+//checkisprof select isprof from utenti where id
+const checkIsProf = async (id_utente) => {
+  const connection = await getConnection();
+  const query = 'SELECT IsProf FROM Utenti WHERE Id = ?';
+  const [rows] = await connection.query(query, [id_utente]);
+  return rows[0];
+}
 
 async function listaUtenti() {
   const connection = await getConnection();
@@ -54,6 +60,7 @@ const updateUtente = async (Id, Nome, Cognome, CodFisc, Email, Password, DataDiN
 
 module.exports = {
   getUtenteById,
+  checkIsProf,
   updateUtente,
   insertUtente,
   getUtenteByEmailDAO,

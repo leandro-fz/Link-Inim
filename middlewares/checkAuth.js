@@ -19,10 +19,6 @@ async function controllaAutenticazione(req, res, next) {
         messaggio: 'token non valido'
       })
     }
-    //accedi al dao di utente, prendi il dto se is prof ù disponibile
-    //e lo salvi in unanuova variabile
-    //let isproftrue = await meto  dao di utente
-    //if <0 
     req.idUtenteLogged = idUtenteLogged;
     req.actualToken = token;
     next();

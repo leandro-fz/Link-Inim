@@ -28,7 +28,7 @@ class CommentsController {
 
 
     static async lista (req, res) {
-        let result = await listComments();
+        let result = await listComments(req.params.idCorsi);
         return res.json(result).send();
     }
 

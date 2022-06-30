@@ -55,7 +55,7 @@ class CoursesController {
             if (req.body.Specializzazione) np.setSpecializzazione(req.body.Specializzazione);
             if (req.body.Durata) np.setDurata(req.body.Durata);
             if (req.body.Capitoli) np.setCapitoli(req.body.Capitoli);
-            if (req.body.IdProf) np.setIdProf(req.body.IdProf);
+            np.setIdProf(req.idUtenteLogged);
             if (req.body.IsDeleted !== null) np.setIsDeleted(req.body.IsDeleted);
 
             await np.save(); 
@@ -75,7 +75,7 @@ class CoursesController {
             if (req.body.Specializzazione) np.setSpecializzazione(req.body.Specializzazione);
             if (req.body.Durata) np.setDurata(req.body.Durata);
             if (req.body.Capitoli) np.setCapitoli(req.body.Capitoli);
-            if (req.body.IdProf) np.setIdProf(req.body.IdProf);
+            np.setIdProf(req.idUtenteLogged);
             if (req.body.IsDeleted !== null) np.setIsDeleted(req.body.IsDeleted);
             await np.save();
             res.status(200).send("Corso modificato");

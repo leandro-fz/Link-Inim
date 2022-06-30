@@ -1,10 +1,10 @@
 const { getConnection } = require("../../db/connection")
 
-const listComments = async () => {
+const listComments = async (id_corso) => {
     const conn = await getConnection();
     // console.log('trying operatore');
-    const query = "SELECT * FROM CommentiCorsi";
-    const [rows] = await conn.query(query);
+    const query = "SELECT * FROM CommentiCorsi WHERE IdCorso = ?";
+    const [rows] = await conn.query(query, [id_corso]);
     return rows;
 }
 
