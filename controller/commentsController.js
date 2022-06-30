@@ -55,7 +55,7 @@ class CommentsController {
             np.setIdUtente(req.idUtenteLogged);
             if (req.body.IdCorso) np.setIdCorso(req.body.IdCorso);
             await np.save();
-            res.status(200).send("Post pubblicato");
+            res.status(200).send("Commento pubblicato");
         } catch (e){
             res.status(500).send ("Internal Server Error");
             console.log(e);
@@ -73,7 +73,7 @@ class CommentsController {
             np.setIdUtente(req.idUtenteLogged);
             if (req.body.IdCorso) np.setIdCorso(req.body.IdCorso);
             await np.save();
-            res.status(200).send("Post modificato");
+            res.status(200).send("Commento modificato");
         } catch (e) {
             res.status(500).send ("Internal Server Error");
             console.log(e);
