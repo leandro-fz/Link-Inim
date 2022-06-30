@@ -1,5 +1,6 @@
 const { validateToken } = require('../model/dao/tokenDao');
 
+//controlla validità del token
 async function controllaAutenticazione(req, res, next) {
     const header = req.headers['authorization'];
     if (!header) {

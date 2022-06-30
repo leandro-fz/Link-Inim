@@ -3,14 +3,19 @@ const MatchingController = require('../controller/matchingController');
 const { PostController } = require('../controller/postController');
 const routerHome = Router();
 
-routerHome.get('/', PostController.lista ) //mostra tutti i post
-routerHome.get('/post/:id', PostController.get ) //mostra post specifico
-routerHome.post('/post', PostController.insert ) //crea nuovo post
-routerHome.put('/post/:id', PostController.update ) //modifica post specifico
-routerHome.delete('/post/:id', PostController.delete ) //elimina post specifico
+//mostra tutti i post
+routerHome.get('/', PostController.lista ) 
 
-routerHome.get('/matching/specializzazioni', MatchingController.getNomiSpecializzazioni )//nomi di tutte specializzazioni
-routerHome.get('/matching/:Idspecializzazione', MatchingController.listaUtentiDisponibili)//nomi disponibili al matching
+//CRUD per la gestione del singolo post
+routerHome.get('/post/:id', PostController.get ) 
+routerHome.post('/post', PostController.insert ) 
+routerHome.put('/post/:id', PostController.update ) 
+routerHome.delete('/post/:id', PostController.delete )
+
+//nomi di tutte le specializzazioni a cui è possibile matchare
+routerHome.get('/matching/specializzazioni', MatchingController.getNomiSpecializzazioni )
+//restituisce i nomi dele persone disponibili al matching con la specializzazione scelta
+routerHome.get('/matching/:Idspecializzazione', MatchingController.listaUtentiDisponibili)
 
 
 module.exports = routerHome;

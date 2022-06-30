@@ -21,6 +21,13 @@ const checkIsProf = async (id_utente) => {
   return rows[0];
 }
 
+const checkIsAdmin = async (id_utente) => {
+  const connection = await getConnection();
+  const query = 'SELECT IsAdmin FROM Utenti WHERE Id = ?';
+  const [rows] = await connection.query(query, [id_utente]);
+  return rows[0];
+}
+
 async function listaUtenti() {
   const connection = await getConnection();
   const [rows] = await connection.query('SELECT * FROM Utenti')
@@ -66,5 +73,6 @@ module.exports = {
   getUtenteByEmailDAO,
   listaUtenti,
   sedeDeleteById,
-  utenteDeleteById
+  utenteDeleteById,
+  checkIsAdmin
 }

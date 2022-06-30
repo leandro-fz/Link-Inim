@@ -2,9 +2,16 @@ const { Router } = require('express');
 const UtenteController  = require('../controller/utenteController');
 const routerProfile = Router();
 
-routerProfile.get('/', UtenteController.myProfile) //restituisce informazioni del profilo loggato
-routerProfile.put('/newmatching', UtenteController.cambiaMatching) //da finire
-routerProfile.put('/newpassword', UtenteController.cambiaPassword) //da finire
-routerProfile.get('/logout', UtenteController.logout) //logout
+//restituisce informazioni del profilo loggato
+routerProfile.get('/', UtenteController.myProfile)
+
+//cambia stato del matching della persona loggata
+routerProfile.put('/newmatching', UtenteController.cambiaMatching)
+
+//cambia la password della persona loggata
+routerProfile.put('/newpassword', UtenteController.cambiaPassword)
+
+//effettua il logout
+routerProfile.get('/logout', UtenteController.logout)
 
 module.exports = routerProfile;
