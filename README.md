@@ -30,15 +30,15 @@ Ci sono tre tipi di utenti nel sistema con tre tipi di privilegi diversi:
 |utente|sicurezza|
 |-------------------|--|
 |dipendente| :green_circle:|
-|professore| :green_circle: :yellow_circle:|
-|admin     | :green_circle: :yellow_circle: :red_circle:|
+|professore| :yellow_circle:|
+|admin     | :red_circle:|
 
 
 l'admin può accedere a tutte le rotte, il professore solo a quelle gialle e verdi, il dipendente solo a quelle verdi
 
 <a name="rotte"></a>
 ## Rotte Backend
-![](images/backendrotte.png)
+![](images/backendrotte2.png)
 
 <a name="software"></a>
 ## Software utilizzati
