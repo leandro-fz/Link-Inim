@@ -13,7 +13,6 @@ class CommentiPost {
         }
     }
 
-
     // restituisce la lista di tutti i commenti al post
     static async lista () {
         let listaCommentiDAO = await listCommentiPost();
@@ -24,16 +23,6 @@ class CommentiPost {
         return res;
     }
 
-    // static async lista() {
-    //     let listaOperatoriDAO = await listaOperatore();
-    //     let res = [];
-
-    //     listaOperatoriDAO.forEach(e => {
-    //         res.push(new Operatore(e));
-    //     });
-    //     return res;
-    // }
-
     // restituisce un commento specifico
     static async get(Id) {
         let pf = await getCommentById(Id);
@@ -41,23 +30,10 @@ class CommentiPost {
         return null;
     }
 
-    // static async exists(Id) {
-    //     return await utenteExistById(Id);
-    // }
-
-    // static async find(Id) {
-    //     return await utenteExistById(Id);
-    // }
-
     // elimina il commento
     static async delete(Id) {
         return await deleteComment(Id);
     }
-
-    // setId(x) {
-    //     if (x == null || typeof (x) == 'undefined') throw 'Nome cannot be null';
-    //     this.Id = x;
-    // }
 
     // get/set id commento
     getId() {
@@ -88,11 +64,6 @@ class CommentiPost {
         if (x == null || typeof (x) == 'undefined') throw 'Datetime cannot be null';
         this.Datetime = x;
     }
-
-    // existId() {
-    //     if (this.Id == null || typeof (this.Id) == 'undefined') return false;
-    //     return true;
-    // }
 
     // get/set id utente
     setIdUtente(x) {

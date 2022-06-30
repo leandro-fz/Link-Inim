@@ -4,6 +4,7 @@ const { logger } = require('../common/logging')
 
 class CoursesController {
 
+      // controlla se esiste l'id del corso
     static async checkId (req,res,next) {
         try {
             if (req.params.idCorsi ) {
@@ -28,25 +29,28 @@ class CoursesController {
     }
 
 
+    // mostra la lista di tutti i corsi
     static async lista (req, res) {
         logger.debug("CorsoController Lista req.params.id:", req.params.id)
         let result = await listCourses();
         return res.json(result).send();
     }
 
+    // mostra il corso in base all'id specificato
     static async get (req, res) {
         let result;
         logger.debug("CorsoController GET req.params.id:", req.params.id)
         if (! req.Courses) {
             result = await Courses.get(req.params.idCorsi);
-            console.log(result);
+            // console.log(result);
         } else {
             result = req.Courses;
         }
-        console.log(result);
+        // console.log(result);
         return res.json(result);
     }
 
+    // inserisci un nuovo corso
     static async insert (req, res) {
         try {
             logger.debug ("CoursesController: insert: body: ", req.body);
@@ -63,10 +67,11 @@ class CoursesController {
         } catch (e){
             logger.error ("ERRORE INSERT CorsiController:", e);
             res.status(500).send ("Internal Server Error");
-            console.log(e);
+            // console.log(e);
         }
     }
 
+    // modifica un corso esistente
     static async update (req, res) {
         try {
             logger.debug ("CoursesController: update: body: ", req.body);
@@ -82,10 +87,11 @@ class CoursesController {
         } catch (e){
             logger.error ("ERRORE Update CorsiController:", e);
             res.status(500).send ("Internal Server Error");
-            console.log(e);
+            // console.log(e);
         }
     }
 
+    // elimina il corso con l'id specificato
     static async delete (req, res) {
         try {
             if (await Courses.delete(req.params.idCorsi)) {

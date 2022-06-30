@@ -1,8 +1,9 @@
-const { listComments } = require("../model/dao/commentsDao");
-const Comments = require("../model/models/commenti");
+const { listCommentiPost } = require("../model/dao/commentiPostDao");
+const CommentiPost = require("../model/models/commentiPost");
 
 class CommentiPostController {
 
+      // controlla se esiste l'id del commento
     static async checkIdCommento (req,res,next) {
         try {
             if (req.params.idCommentiPost ) {
@@ -27,23 +28,24 @@ class CommentiPostController {
     }
 
 
+    // restituisce la lista dei commenti in base all'id del post
     static async lista (req, res) {
-        let result = await listCommentiPost(req.params.idCommentiPost);
+        let result = await listCommentiPost(req.params.idPost);
         return res.json(result).send();
     }
 
+    // restituisce il commento con l'id passato
     static async get (req, res) {
         let result;
-        if (! req.Posts) {
+        if (! req.CommentiPost) {
             result = await CommentiPost.get(req.params.idCommentiPost);
-            console.log(result);
         } else {
             result = req.CommentiPost;
         }
-        console.log(result);
         return res.json(result);
     }
 
+    // inserisce nuovo commento
     static async insert (req, res) {
         try {
             let np = new CommentiPost();
@@ -58,10 +60,11 @@ class CommentiPostController {
             res.status(200).send("Commento pubblicato");
         } catch (e){
             res.status(500).send ("Internal Server Error");
-            console.log(e);
+            // console.log(e);
         }
     }
 
+    // modifica un commento esistente
     static async update (req, res) {
         try {
             let np = await CommentiPost.get(req.params.idCommentiPost);
@@ -77,10 +80,11 @@ class CommentiPostController {
             res.status(200).send("Commento modificato");
         } catch (e) {
             res.status(500).send ("Internal Server Error");
-            console.log(e);
+            // console.log(e);
         }
     }
 
+    // cancella il commento con l'id specificato
     static async delete (req, res) {
         try {
             if (await CommentiPost.delete(req.params.idCommentiPost)) {

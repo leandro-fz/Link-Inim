@@ -3,7 +3,6 @@ const { logger } = require('../../common/logging')
 
 const listCourses = async () => {
     const conn = await getConnection();
-    // console.log('trying operatore');
     const query = "SELECT * FROM Corsi";
     logger.debug('Query Lista Corsi:' + query);
     const [rows] = await conn.query(query);

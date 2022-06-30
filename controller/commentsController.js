@@ -3,6 +3,7 @@ const Comments = require("../model/models/commenti");
 
 class CommentsController {
 
+    // controlla se esiste l'id del commento
     static async checkId (req,res,next) {
         try {
             if (req.params.idCommenti ) {
@@ -26,12 +27,13 @@ class CommentsController {
         }            
     }
 
-
+    // restituisce la lista dei commenti in base all'id del corso
     static async lista (req, res) {
         let result = await listComments(req.params.idCorsi);
         return res.json(result).send();
     }
 
+    // restituisce il commento con l'id passato
     static async get (req, res) {
         let result;
         if (! req.Comments) {
@@ -44,6 +46,7 @@ class CommentsController {
         return res.json(result);
     }
 
+    // inserisce nuovo commento
     static async insert (req, res) {
         try {
             let np = new Comments();
@@ -61,6 +64,7 @@ class CommentsController {
         }
     }
 
+    // modifica un commento esistente
     static async update (req, res) {
         try {
             let np = await Comments.get(req.params.idCommenti);
@@ -79,6 +83,7 @@ class CommentsController {
         }
     }
 
+    // cancella il commento con l'id specificato
     static async delete (req, res) {
         try {
             if (await Comments.delete(req.params.idCommenti)) {

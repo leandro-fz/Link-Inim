@@ -63,4 +63,37 @@ ADD COLUMN `IsDeleted` TINYINT NULL DEFAULT NULL AFTER `IsAdmin`;
 INSERT INTO `linkinim`.`corsi` (`Id`, `IdProf`, `Titolo`, `Specializzazione`, `Durata`, `Capitoli`, `IsDeleted`) VALUES ('2', '1', 'sdfjogn', '1', '1', '1', 6);
 SELECT * FROM Utenti;
 
-INSERT INTO linkinim.commenticorsi (Testo, Datetime, IdCorso, IdUtente) VALUES ('Pinco Pallino', '02/02/02', 2, 4)
+INSERT INTO linkinim.commenticorsi (Testo, Datetime, IdCorso, IdUtente) VALUES ('Pinco Pallino', '02-02-02', 2, 2);
+SELECT * FROM linkinim.token;
+
+ALTER TABLE `linkinim`.`utenti` 
+ADD COLUMN `IsProf` TINYINT NULL DEFAULT 0 AFTER `IsDeleted`;
+
+ALTER TABLE `linkinim`.`quiz` 
+DROP COLUMN `IdCapitolo`,
+ADD COLUMN `Domanda` VARCHAR(250) NULL AFTER `IdCorso`,
+CHANGE COLUMN `RispostaCorretta` `RispostaCorretta` VARCHAR(250) NULL ,
+CHANGE COLUMN `RispostaErrata1` `RispostaErrata1` VARCHAR(250) NULL ,
+CHANGE COLUMN `RispostaErrata2` `RispostaErrata2` VARCHAR(250) NULL ,
+CHANGE COLUMN `RispostaErrata3` `RispostaErrata3` VARCHAR(250) NULL ;
+
+DROP TABLE `linkinim`.`corsispecializzazioni`;
+
+
+ALTER TABLE `linkinim`.`corsi` 
+ADD INDEX `Corsi.Specializzazione_idx` (`Specializzazione` ASC) VISIBLE;
+;
+ALTER TABLE `linkinim`.`corsi` 
+ADD CONSTRAINT `Corsi.Specializzazione`
+  FOREIGN KEY (`Specializzazione`)
+  REFERENCES `linkinim`.`specializzazioni` (`Id`)
+  ON DELETE NO ACTION
+  ON UPDATE NO ACTION;
+  
+  SELECT * FROM linkinim.commentipost;
+  
+  SELECT linkinim.commentipost.*, 
+    linkinim.utenti.Nome, linkinim.utenti.Cognome
+    FROM linkinim.commentipost  
+    LEFT JOIN linkinim.utenti ON linkinim.commentipost.IdUtente = linkinim.utenti.Id
+    WHERE linkinim.commentipost.Id = 1;

@@ -12,7 +12,7 @@ class Comments {
         }
     }
 
-
+    // restituisce la lista di tutti i commenti al corso
     static async lista () {
         let listaCommentiDAO = await listComments();
         let res = [];
@@ -22,38 +22,19 @@ class Comments {
         return res;
     }
 
-    // static async lista() {
-    //     let listaOperatoriDAO = await listaOperatore();
-    //     let res = [];
-
-    //     listaOperatoriDAO.forEach(e => {
-    //         res.push(new Operatore(e));
-    //     });
-    //     return res;
-    // }
-
+    // restituisce un commento specifico
     static async get(Id) {
         let pf = await getCommentById(Id);
         if (pf) { return new Comments(pf); }
         return null;
     }
 
-    // static async exists(Id) {
-    //     return await utenteExistById(Id);
-    // }
-
-    // static async find(Id) {
-    //     return await utenteExistById(Id);
-    // }
-
+    // elimina il commento
     static async delete(Id) {
         return await deleteComment(Id);
     }
 
-    // setId(x) {
-    //     if (x == null || typeof (x) == 'undefined') throw 'Nome cannot be null';
-    //     this.Id = x;
-    // }
+    // get/set id commento
     getId() {
         return this.Id;
     }
@@ -62,6 +43,8 @@ class Comments {
         if (x == null || typeof (x) == 'undefined') throw 'Id cannot be null';
         this.Id = x;
     }
+
+    // get/set testo commento
     getTesto() {
         return this.Testo;
     }
@@ -70,6 +53,8 @@ class Comments {
         if (x == null || typeof (x) == 'undefined') throw 'Text field cannot be null';
         this.Testo = x;
     }
+
+    // get/set data commento
     getDatetime() {
         return this.Datetime;
     }
@@ -79,11 +64,7 @@ class Comments {
         this.Datetime = x;
     }
 
-    // existId() {
-    //     if (this.Id == null || typeof (this.Id) == 'undefined') return false;
-    //     return true;
-    // }
-
+    // get/set id utente
     setIdUtente(x) {
         if (x == null || typeof (x) == 'undefined') throw 'IdUtente cannot be null';
         this.IdUtente = x;
@@ -92,6 +73,7 @@ class Comments {
         return this.IdUtente;
     }
 
+    // get/set id corso
     setIdCorso(x) {
         if (x == null || typeof (x) == 'undefined') throw 'IdCorso cannot be null';
         this.IdCorso = x;
@@ -100,6 +82,7 @@ class Comments {
         return this.IdCorso;
     }
 
+    // insert nuovo commento e update commento
     async save() {
         if (typeof (this.Id) != 'undefined' && this.Id != null) {
             let res = await updateComments(this.Id, this.Testo, this.Datetime, this.IdUtente, this.IdCorso

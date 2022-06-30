@@ -4,6 +4,7 @@ const { logger } = require('../common/logging')
 
 class PostController {
 
+      // controlla se esiste l'id del post
     static async checkId (req,res,next) {
         try {
             if (req.params.idPost ) {
@@ -27,12 +28,14 @@ class PostController {
         }            
     }
 
+    // mostra la lista di tutti i post
     static async lista (req, res) {
         let result = await listPost();
         logger.debug("PostController Lista ", result)
         return res.json(result).send();
     }
 
+    // modifica il post con l'id specificato
     static async get (req, res) {
         let result;
         if (! req.Post) {
@@ -44,6 +47,7 @@ class PostController {
         
     }
 
+    // inserisci un nuovo corso
     static async insert (req, res) {
         try {
             logger.debug ("postController: insert: body: ", req.body);
@@ -56,10 +60,11 @@ class PostController {
         } catch (e){
             logger.error ("ERRORE INSERT DEI POST:", e);
             res.status(500).send ("Internal Server Error");
-            console.log(e);
+            // console.log(e);
         }
     }
 
+    // modifica un corso esistente
     static async update (req, res) {
         try {
             logger.debug ("PostController: UPDATE: body: ", req.body);
@@ -77,6 +82,7 @@ class PostController {
         }
     }
 
+    // elimina un corso con l'id specificato
     static async delete (req, res) {
         try {
             logger.debug ("PostController: DELETE: body: ", req.body);
