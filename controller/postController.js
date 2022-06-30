@@ -25,12 +25,9 @@ class PostController {
             logger.debug ("postController: insert: body: ", req.body);
             let np = new Post();
             if (req.body.Testo) np.setTesto(req.body.Testo);
-            if (req.body.Datetime) np.setDatetime(req.body.Datetime);
+            np.setDatetime( new Date());
             if (req.body.IdUtente) np.setIdUtente(req.body.IdUtente);
             await np.save();
-            // return res.json({
-            //     message: 'done'
-            // }); 
             res.status(200).send("Ok");
         } catch (e){
             logger.error ("ERRORE INSERT DEI POST:", e);
@@ -44,7 +41,7 @@ class PostController {
             logger.debug ("PostController: UPDATE: body: ", req.body);
             let np = await Post.get(req.params.id);
             if (req.body.Testo) np.setTesto(req.body.Testo);
-            if (req.body.Datetime) np.setDatetime(req.body.Datetime);
+            np.setDatetime( new Date());
             if (req.body.IdUtente) np.setIdUtente(req.body.IdUtente);
             logger.debug ("PostController: UPDATE: Salvo post aggiornato: ", np);
             await np.save();

@@ -74,7 +74,7 @@ class CoursesController {
         try {
             logger.debug ("CoursesController: update: body: ", req.body);
             let np = await Courses.get(req.params.id);
-req.body.Titolo) np.setTitolo(req.body.Titolo);
+            if(req.body.Titolo) np.setTitolo(req.body.Titolo);
             if (req.body.Specializzazione) np.setSpecializzazione(req.body.Specializzazione);
             if (req.body.Durata) np.setDurata(req.body.Durata);
             if (req.body.Capitoli) np.setCapitoli(req.body.Capitoli);
