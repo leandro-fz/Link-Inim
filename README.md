@@ -1,14 +1,15 @@
 # <h1 align="center">Link-Inim</h1>
 
+
 Progetto sviluppato per occasione dell'hackathon di fine corso.
 Migliora la produttività della tua azienda con Link-Inim
 
 ### Indice
-* 1.[Installazione](#installazione)
-* 2.[Guida](#guida)
-* 3.[Rotte Backend](#rotte)
-* 4.[Software utilizzati](#software)
-* 5.[Autori](#autori)
+* 1 [Installazione](#installazione)
+* 2 [Guida](#guida)
+* 3 [Rotte Backend](#rotte)
+* 4 [Software utilizzati](#software)
+* 5 [Autori](#autori)
 
 <a name="installazione"></a>
 ## Installazione
@@ -25,9 +26,16 @@ Si dovrà inoltre avviare il database
 
 <a name="guida"></a>
 ## Guida
+Ci sono tre tipi di utenti nel sistema con tre tipi di privilegi diversi:
+|utente|sicurezza|
+|-------------------|--|
+|dipendente| :green_circle:
+|professore| :green_circle: :yellow_circle:
+|admin     | :green_circle: :yellow_circle: :red_circle:
 
 <a name="rotte"></a>
 ## Rotte Backend
+![](https://github.com/leandro-fz/Link-Inim/blob/main/images/backendrotte.png)
 
 <a name="software"></a>
 ## Software utilizzati
@@ -50,3 +58,6 @@ Si dovrà inoltre avviare il database
 | Sonia Ascenzi                 |   [link](https://www.linkedin.com/in/soniaascenzi/)   |
 | Luca Ardò                     |   [link](https://www.linkedin.com/in/luca-ard%C3%B2-4973a6226/)  |
 | Maria Fernanda Fabian Briceno |   [link](https://www.linkedin.com/in/maria-fernanda-fabian-briceno-6429051a2/)  |
+
+
+<img src="images/link-inim-logo%20ver2.png"/>
