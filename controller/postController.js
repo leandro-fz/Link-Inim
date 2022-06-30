@@ -56,11 +56,10 @@ class PostController {
             np.setDatetime(new Date());
             np.setIdUtente(req.idUtenteLogged);
             await np.save();
-            res.status(200).send("Ok");
+            res.status(200).send("Post creato");
         } catch (e) {
             logger.error("ERRORE INSERT DEI POST:", e);
             res.status(500).send("Internal Server Error");
-            // console.log(e);
         }
     }
 
@@ -69,13 +68,18 @@ class PostController {
         try {
             logger.debug("PostController: UPDATE: body: ", req.body);
             let np = await Post.get(req.params.id);
-            if (req.body.Testo) np.setTesto(req.body.Testo);
-            np.setDatetime(new Date());
-            np.setIdUtente(req.idUtenteLogged);
-            logger.debug("PostController: UPDATE: Salvo post aggiornato: ", np);
-            await np.save();
+            if (np.IdUtente == req.idUtenteLogged) {
+                if (req.body.Testo) np.setTesto(req.body.Testo);
+                np.setDatetime(new Date());
+                np.setIdUtente(req.idUtenteLogged);
+                logger.debug("PostController: UPDATE: Salvo post aggiornato: ", np);
+                await np.save();
+                res.status(200).send("Post modificato");
+            }
+            else {
+                res.status(403).send("non autorizzato");
+            }
 
-            res.status(200).send("Ok");
         } catch (e) {
             logger.error("ERRORE PUT DEI POST:", e);
             res.status(500).send("Internal Server Error");
@@ -86,14 +90,17 @@ class PostController {
     static async delete(req, res) {
         try {
             logger.debug("PostController: DELETE: body: ", req.body);
-            if (await Post.delete(req.params.id)) {
-                res.status(200).send('ok');
-            } else {
-                res.status(400).send("something went wrong");
+            let result2 = await Post.get(req.params.id);
+            if (result2.IdUtente == req.idUtenteLogged) {
+                if (await Post.delete(req.params.id)) {
+                    res.status(200).send('Post eliminato correttamente');
+                } else {
+                    res.status(400).send("something went wrong");
+                }
             }
-            // return res.json({
-            //     message: 'successfully deleted'
-            // }); 
+            else {
+                res.status(403).send("non autorizzato");
+            }
         } catch (e) {
             logger.error("ERRORE DELETE DEI POST: ", e);
             res.status(500).send("Internal Server Error");
