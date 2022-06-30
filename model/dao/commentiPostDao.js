@@ -17,7 +17,7 @@ const getCommentById = async (Id) => {
     const query = `SELECT * FROM CommentiPost WHERE Id = ?`;
     const [rows] = await conn.query(query, [Id]);
     return rows[0];
-  }
+}
 
 const insertComments = async (Testo, Datetime, IdUtente, IdPost, IdCommento) => {
     const conn = await getConnection();
@@ -38,7 +38,7 @@ const deleteComment = async (Id) => {
     const query = 'DELETE FROM CommentiPost WHERE Id = ?';
     const [res] = await conn.query(query, [Id]);
     return res.affectedRows === 1;
-  }
+}
 
 module.exports = {
     listCommentiPost,

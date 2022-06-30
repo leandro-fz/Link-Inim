@@ -1,4 +1,4 @@
-const { listComments, insertComments, getCommentById, deleteComment, updateComments} = require('../dao/commentsDao');
+const { listComments, insertComments, getCommentById, deleteComment, updateComments } = require('../dao/commentsDao');
 
 class Comments {
     constructor(p) {
@@ -13,7 +13,7 @@ class Comments {
     }
 
     // restituisce la lista di tutti i commenti al corso
-    static async lista () {
+    static async lista() {
         let listaCommentiDAO = await listComments();
         let res = [];
         listaCommentiDAO.forEach(e => {

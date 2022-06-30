@@ -13,12 +13,11 @@ const getSpecializzazioniById = async (Id) => {
     const conn = await getConnection();
     const query = `SELECT * FROM Specializzazioni WHERE Id = ?`;
     const [rows] = await conn.query(query, [Id]);
-    logger.debug('Query Singolo post Result:', rows[0]);
     return rows[0];
-  }
+}
 
 // restituisce la lista delle persone disponibili
-const listaPersoneDisponibili =  async (idSpecializzazione) => {
+const listaPersoneDisponibili = async (idSpecializzazione) => {
     const connection = await getConnection();
     const query = `SELECT Id, Nome, Cognome, Email FROM 
     (SELECT UT.Id, Nome, Cognome, Email, Matching FROM utenti as UT LEFT JOIN utentispecializzazioni as US on UT.Id = US.IdUtente

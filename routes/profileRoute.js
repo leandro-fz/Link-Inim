@@ -1,5 +1,5 @@
 const { Router } = require('express');
-const UtenteController  = require('../controller/utenteController');
+const UtenteController = require('../controller/utenteController');
 const routerProfile = Router();
 
 //restituisce informazioni del profilo loggato

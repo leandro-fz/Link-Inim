@@ -6,12 +6,12 @@ const routerProfile = require('./profileRoute.js')
 const controllaAutenticazione = require('../middlewares/checkAuth')
 const controllaAutenticazioneAdmin = require('../middlewares/checkAuthAdmin')
 
-function ConnectRouter(app){
+function ConnectRouter(app) {
     app.use('/login', routerLogin)
-    app.use('/home',controllaAutenticazione, routerHome)
-    app.use('/corso',controllaAutenticazione, routerCorsi)
-    app.use('/admin', controllaAutenticazione, controllaAutenticazioneAdmin, routerAdmin )
-    app.use('/profile',controllaAutenticazione, routerProfile )
+    app.use('/home', controllaAutenticazione, routerHome)
+    app.use('/corso', controllaAutenticazione, routerCorsi)
+    app.use('/admin', controllaAutenticazione, controllaAutenticazioneAdmin, routerAdmin)
+    app.use('/profile', controllaAutenticazione, routerProfile)
 }
 
 module.exports = ConnectRouter;

@@ -14,7 +14,7 @@ const getPostById = async (Id) => {
     const [rows] = await conn.query(query, [Id]);
     logger.debug('Query Singolo post Result:', rows[0]);
     return rows[0];
-  }
+}
 
 const insertPost = async (Testo, Datetime, IdUtente) => {
     const conn = await getConnection();
@@ -35,7 +35,7 @@ const deletePost = async (Id) => {
     const query = 'DELETE FROM Post WHERE Id = ?';
     const [res] = await conn.query(query, [Id]);
     return res.affectedRows === 1;
-  }
+}
 
 module.exports = {
     listPost,

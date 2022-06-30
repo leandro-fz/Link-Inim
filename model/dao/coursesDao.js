@@ -18,7 +18,7 @@ const getCoursesById = async (id) => {
     const [rows] = await conn.query(query, [id]);
     logger.debug('Query Singolo Corso Result:', rows[0]);
     return rows[0];
-  }
+}
 
 const insertCourses = async (Titolo, Specializzazione, Durata, Capitoli, IdProf, IsDeleted) => {
     const conn = await getConnection();
@@ -27,7 +27,7 @@ const insertCourses = async (Titolo, Specializzazione, Durata, Capitoli, IdProf,
     return res.insertId;
 }
 
-const updateCourses = async (Id, Titolo, Specializzazione, Durata, Capitoli, IdProf, IsDeleted ) => {
+const updateCourses = async (Id, Titolo, Specializzazione, Durata, Capitoli, IdProf, IsDeleted) => {
     const conn = await getConnection();
     const query = 'UPDATE Corsi SET Titolo = ?, Specializzazione = ?, Durata = ?, Capitoli = ?, IdProf = ?, IsDeleted = ? WHERE Id = ?';
     const [res] = await conn.query(query, [Titolo, Specializzazione, Durata, Capitoli, IdProf, IsDeleted, Id]);
@@ -40,7 +40,7 @@ const deleteCourses = async (id) => {
     const query = 'DELETE FROM Corsi WHERE id = ?';
     const [res] = await conn.query(query, [id]);
     return res.affectedRows === 1;
-  }
+}
 
 module.exports = {
     listCourses,

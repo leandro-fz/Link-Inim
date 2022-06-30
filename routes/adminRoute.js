@@ -5,7 +5,7 @@ const adminController = require('../controller/adminController')
 //schermata base admin
 routerAdmin.get('/', function (req, res) {
     res.json({
-        messaggio: 'Accesso effettuato comr Admin'
+        messaggio: 'Accesso effettuato come Admin'
     }).send()
 })
 

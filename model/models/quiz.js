@@ -1,4 +1,4 @@
-const { listQuiz, insertQuiz, getQuizById, deleteQuiz, updateQuiz} = require('../dao/quizDao');
+const { listQuiz, insertQuiz, getQuizById, deleteQuiz, updateQuiz } = require('../dao/quizDao');
 
 class Quiz {
     constructor(p) {
@@ -15,7 +15,7 @@ class Quiz {
     }
 
     // restituisce la lista di tutti i quiz
-    static async lista () {
+    static async lista() {
         let listaQuizDAO = await listQuiz();
         let res = [];
         listaQuizDAO.forEach(e => {
