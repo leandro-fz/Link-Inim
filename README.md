@@ -11,8 +11,8 @@ Migliora la produttività della tua azienda con Link-Inim
 * Framework JS : [Express](https://expressjs.com/it/)
 * Ambiente di sviluppo API : [Postman](https://www.postman.com/)
 * Mockup graphic platform : [Figma](https://www.figma.com/)
-* Task management : Trello(https://trello.com/)
-* Database platform : MySQL Workbench(https://www.mysql.com/it/products/workbench/)
+* Task management : [Trello](https://trello.com/)
+* Database platform : [MySQL Workbench](https://www.mysql.com/it/products/workbench/)
 
 
 ## Autori
