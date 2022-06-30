@@ -1,7 +1,7 @@
 # <h1 align="center">Link-Inim</h1>
 
 
-Progetto sviluppato per occasione dell'hackathon di fine corso.
+Progetto sviluppato perl'hackathon di fine corso.
 Migliora la produttività della tua azienda con Link-Inim
 
 ### Indice
