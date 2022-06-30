@@ -55,7 +55,6 @@ async function forcedExpirationToken(IdUtente, token, Scadenza = 0, RemindMe = 0
   return res.affectedRows === 1;
 }
 
-
 module.exports = {
   persistToken,
   validateToken,
