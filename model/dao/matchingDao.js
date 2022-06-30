@@ -1,6 +1,6 @@
 const { getConnection } = require("../../db/connection")
 
-
+// restituisce la lista di tutte le specializzazioni
 const listaNomiSpecializzazioni = async () => {
     const connection = await getConnection();
     const query = `SELECT * FROM Specializzazioni`;
@@ -8,6 +8,16 @@ const listaNomiSpecializzazioni = async () => {
     return rows;
 }
 
+// prende una specializzazione in base all'id passato
+const getSpecializzazioniById = async (Id) => {
+    const conn = await getConnection();
+    const query = `SELECT * FROM Specializzazioni WHERE Id = ?`;
+    const [rows] = await conn.query(query, [Id]);
+    logger.debug('Query Singolo post Result:', rows[0]);
+    return rows[0];
+  }
+
+// restituisce la lista delle persone disponibili
 const listaPersoneDisponibili =  async (idSpecializzazione) => {
     const connection = await getConnection();
     const query = `SELECT Id, Nome, Cognome, Email FROM 
@@ -20,5 +30,6 @@ const listaPersoneDisponibili =  async (idSpecializzazione) => {
 
 module.exports = {
     listaNomiSpecializzazioni,
+    getSpecializzazioniById,
     listaPersoneDisponibili
 }

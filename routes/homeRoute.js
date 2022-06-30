@@ -16,7 +16,7 @@ routerHome.delete('/post/:id', PostController.delete )
 //nomi di tutte le specializzazioni a cui è possibile matchare
 routerHome.get('/matching/specializzazioni', MatchingController.getNomiSpecializzazioni )
 //restituisce i nomi dele persone disponibili al matching con la specializzazione scelta
-routerHome.get('/matching/:Idspecializzazione', MatchingController.listaUtentiDisponibili)
+routerHome.get('/matching/:Idspecializzazione', MatchingController.checkId, MatchingController.listaUtentiDisponibili)
 
 // mostra tutti i commenti dei post
 routerHome.get('/post/:idPost/commenti', PostController.checkId, CommentiPostController.lista);

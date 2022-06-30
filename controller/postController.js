@@ -4,7 +4,7 @@ const { logger } = require('../common/logging')
 
 class PostController {
 
-      // controlla se esiste l'id del post
+    // controlla se esiste l'id del post
     static async checkId (req,res,next) {
         try {
             if (req.params.idPost ) {

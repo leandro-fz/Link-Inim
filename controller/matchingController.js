@@ -1,9 +1,34 @@
-const { listaNomiSpecializzazioni, listaPersoneDisponibili } = require("../model/dao/matchingDao");
+const { listaNomiSpecializzazioni, listaPersoneDisponibili, getSpecializzazioniById } = require("../model/dao/matchingDao");
 
 
 
 class MatchingController{
 
+      // controlla se esiste l'id del matching
+      static async checkId (req,res,next) {
+        try {
+            if (req.params.idMatching ) {
+                const eIntero = parseInt(req.params.idMatching);
+                if(isNaN(eIntero)) {
+                  return res.status(400).send("id matching non numerico");
+                }
+                let p;
+                p= await getSpecializzazioniById(req.params.idMatching);
+                if (p) {
+                    req.Matching=p;
+                    next();
+                }  else {
+                    return res.status(404).send ("Id matching non trovato");                    
+                }               
+            } else {
+                return res.status(404).send("Id matching NON Fornito");
+            }
+        } catch (err) {
+            return res.status(500).send ("Internal Server Error");
+        }            
+    }
+
+    // prende tutte le specializzazioni
     static async getNomiSpecializzazioni(req, res){
         try {
             let result = await listaNomiSpecializzazioni() 
@@ -13,6 +38,7 @@ class MatchingController{
         }
     }
 
+    // prende la lista degli utenti disponibili
     static async listaUtentiDisponibili(req, res){
         try {
             let result = await listaPersoneDisponibili(req.params.Idspecializzazione)
