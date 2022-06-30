@@ -49,13 +49,12 @@ class CommentsController {
         try {
             let np = new Comments();
             if (req.body.Testo) np.setTesto(req.body.Testo);
-            if (req.body.Datetime) np.setDatetime(req.body.Datetime);
-            if (req.body.IdUtente) np.setIdUtente(req.body.IdUtente);
+            //if (req.body.Datetime) 
+            np.setDatetime(new Date());
+            //if (req.body.IdUtente)
+            np.setIdUtente(req.idUtenteLogged);
             if (req.body.IdCorso) np.setIdCorso(req.body.IdCorso);
             await np.save();
-            // return res.json({
-            //     message: 'done'
-            // }); 
             res.status(200).send("Ok");
         } catch (e){
             res.status(500).send ("Internal Server Error");
@@ -66,14 +65,14 @@ class CommentsController {
     static async update (req, res) {
         try {
             let np = await Comments.get(req.params.idCommenti);
+
             if (req.body.Testo) np.setTesto(req.body.Testo);
-            if (req.body.Datetime) np.setDatetime(req.body.Datetime);
-            if (req.body.IdUtente) np.setIdUtente(req.body.IdUtente);
+            //if (req.body.Datetime) 
+            np.setDatetime(new Date());
+            //if (req.body.IdUtente)
+            np.setIdUtente(req.idUtenteLogged);
             if (req.body.IdCorso) np.setIdCorso(req.body.IdCorso);
             await np.save();
-            // return res.json({
-            //     message: 'done'
-            // }); 
             res.status(200).send("Ok");
         } catch (e) {
             res.status(500).send ("Internal Server Error");
@@ -84,13 +83,10 @@ class CommentsController {
     static async delete (req, res) {
         try {
             if (await Comments.delete(req.params.idCommenti)) {
-                res.status(200).send('ok');
+                res.status(200).send('successfully deleted');
             } else {
                 res.status(400).send ("something went wrong");
             }
-        // return res.json({
-        //     message: 'successfully deleted'
-        // }); 
         } catch {
             res.status(500).send ("Internal Server Error");
         }

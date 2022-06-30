@@ -7,9 +7,9 @@ const controllaAutenticazione = require('../middlewares/checkAuth')
 
 function ConnectRouter(app){
     app.use('/login', routerLogin)
-    app.use('/home', routerHome)
-    app.use('/corsi', routerCorsi)
-    app.use('/admin', routerAdmin )
+    app.use('/home',controllaAutenticazione, routerHome)
+    app.use('/corsi',controllaAutenticazione, routerCorsi)
+    app.use('/admin', controllaAutenticazione, routerAdmin )
     app.use('/profile',controllaAutenticazione, routerProfile )
 }
 
