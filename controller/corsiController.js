@@ -1,5 +1,6 @@
 const { listCourses } = require("../model/dao/coursesDao");
 const Courses = require("../model/models/corsi");
+const { logger } = require('../common/logging')
 
 class CoursesController {
 
@@ -28,13 +29,14 @@ class CoursesController {
 
 
     static async lista (req, res) {
-        // console.log('trying operatore controller...')
+        logger.debug("CorsoController Lista req.params.id:", req.params.id)
         let result = await listCourses();
         return res.json(result).send();
     }
 
     static async get (req, res) {
         let result;
+        logger.debug("CorsoController GET req.params.id:", req.params.id)
         if (! req.Courses) {
             result = await Courses.get(req.params.idCorsi);
             console.log(result);
@@ -47,19 +49,22 @@ class CoursesController {
 
     static async insert (req, res) {
         try {
+            logger.debug ("CoursesController: insert: body: ", req.body);
             let np = new Courses();
             if (req.body.Titolo) np.setTitolo(req.body.Titolo);
             if (req.body.Specializzazione) np.setSpecializzazione(req.body.Specializzazione);
             if (req.body.Durata) np.setDurata(req.body.Durata);
             if (req.body.Capitoli) np.setCapitoli(req.body.Capitoli);
             if (req.body.IdProf) np.setIdProf(req.body.IdProf);
-            np.setIsDeleted(req.body.IsDeleted);
+            if (req.body.IsDeleted !== null) np.setIsDeleted(req.body.IsDeleted);
+
             await np.save();
             // return res.json({
             //     message: 'done'
             // }); 
             res.status(200).send("Ok");
         } catch (e){
+            logger.error ("ERRORE INSERT CorsiController:", e);
             res.status(500).send ("Internal Server Error");
             console.log(e);
         }
@@ -67,19 +72,21 @@ class CoursesController {
 
     static async update (req, res) {
         try {
-            let np = await Courses.get(req.params.idCorsi);
-            if (req.body.Titolo) np.setTitolo(req.body.Titolo);
+            logger.debug ("CoursesController: update: body: ", req.body);
+            let np = await Courses.get(req.params.id);
+req.body.Titolo) np.setTitolo(req.body.Titolo);
             if (req.body.Specializzazione) np.setSpecializzazione(req.body.Specializzazione);
             if (req.body.Durata) np.setDurata(req.body.Durata);
             if (req.body.Capitoli) np.setCapitoli(req.body.Capitoli);
             if (req.body.IdProf) np.setIdProf(req.body.IdProf);
-            if (req.body.IsDeleted) np.setIsDeleted(req.body.IsDeleted);
+            if (req.body.IsDeleted !== null) np.setIsDeleted(req.body.IsDeleted);
             await np.save();
             // return res.json({
             //     message: 'done'
             // }); 
             res.status(200).send("Ok");
-        } catch (e) {
+        } catch (e){
+            logger.error ("ERRORE Update CorsiController:", e);
             res.status(500).send ("Internal Server Error");
             console.log(e);
         }
@@ -95,7 +102,8 @@ class CoursesController {
         // return res.json({
         //     message: 'successfully deleted'
         // }); 
-        } catch {
+        } catch (e){
+            logger.error ("ERRORE Delete CorsiController:", e);
             res.status(500).send ("Internal Server Error");
         }
     }

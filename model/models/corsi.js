@@ -1,16 +1,17 @@
 const { listCourses, insertCourses, getCoursesById, deleteCourses, updateCourses} = require('../dao/coursesDao');
+const { logger } = require('../../common/logging')
 
 class Courses {
     constructor(p) {
         if (p) {
-            if (p.id) this.id = p.id;
-            if (p.titolo) this.titolo = p.titolo;
-            if (p.specializzazione) this.specializzazione = p.specializzazione;
-            if (p.durata) this.durata = p.durata;
-            if (p.capitoli) this.capitoli = p.capitoli;
-            if (p.isdeleted) this.isdeleted = p.isdeleted;
+            if (p.Id) this.Id = p.Id;
+            if (p.Titolo) this.Titolo = p.Titolo;
+            if (p.Specializzazione) this.Specializzazione = p.Specializzazione;
+            if (p.Durata) this.Durata = p.Durata;
+            if (p.Capitoli) this.Capitoli = p.Capitoli;
+            if (p.IsDeleted !== null) this.IsDeleted = p.IsDeleted;
 
-            if (p.idProf) this.idProf = p.idProf;
+            if (p.IdProf) this.IdProf = p.IdProf;
 
         }
     }
@@ -35,55 +36,57 @@ class Courses {
     //     return res;
     // }
 
-    static async get(id) {
-        let pf = await getCoursesById(id);
-        if (pf) { return pf; }
+    static async get(Id) {
+        let pf = await getCoursesById(Id);
+        logger.debug("Model Corso Get singolo: ", pf)
+        if (pf) { return new Courses(pf); }
+
         return null;
     }
 
-    // static async exists(id) {
-    //     return await utenteExistById(id);
+    // static async exists(Id) {
+    //     return await utenteExistById(Id);
     // }
 
-    // static async find(id) {
-    //     return await utenteExistById(id);
+    // static async find(Id) {
+    //     return await utenteExistById(Id);
     // }
 
-    static async delete(id) {
-        return await deleteCourses(id);
+    static async delete(Id) {
+        return await deleteCourses(Id);
     }
 
     // setId(x) {
     //     if (x == null || typeof (x) == 'undefined') throw 'Nome cannot be null';
-    //     this.id = x;
+    //     this.Id = x;
     // }
     getId() {
-        return this.id;
+        return this.Id;
     }
 
     setId(x) {
         if (x == null || typeof (x) == 'undefined') throw 'ID cannot be null';
-        this.id = x;
+        this.Id = x;
     }
     getIdProf() {
-        return this.idProf;
+        return this.IdProf;
     }
 
     setIdProf(x) {
         if (x == null || typeof (x) == 'undefined') throw 'IDProf cannot be null';
-        this.idProf = x;
+        this.IdProf = x;
     }
     getIsDeleted() {
-        return this.isdeleted;
+        return this.IsDeleted;
     }
 
     setIsDeleted(x) {
         if (x == null || typeof (x) == 'undefined') throw 'IsDeleted cannot be null';
-        this.isdeleted = x;
+        this.IsDeleted = x;
     }
 
     // existId() {
-    //     if (this.id == null || typeof (this.id) == 'undefined') return false;
+    //     if (this.Id == null || typeof (this.Id) == 'undefined') return false;
     //     return true;
     // }
     setTitolo(x) {
@@ -96,7 +99,7 @@ class Courses {
 
     setSpecializzazione(x) {
         if (x == null || typeof (x) == 'undefined') throw 'Specializzazione cannot be null';
-        this.specializzazione = x;
+        this.Specializzazione = x;
     }
     getSpecializzazione() {
         return this.Specializzazione;
@@ -104,28 +107,28 @@ class Courses {
 
     setDurata(x) {
         if (x == null || typeof (x) == 'undefined') throw 'Durata cannot be null';
-        this.durata = x;
+        this.Durata = x;
     }
     getDurata() {
-        return this.durata;
+        return this.Durata;
     }
     setCapitoli(x) {
         if (x == null || typeof (x) == 'undefined') throw 'Capitoli cannot be null';
-        this.capitoli = x;
+        this.Capitoli = x;
     }
     getCapitoli() {
-        return this.capitoli;
+        return this.Capitoli;
     }
 
     async save() {
-        if (typeof (this.id) != 'undefined' && this.id != null) {
-            let res = await updateCourses(this.id, this.titolo, this.specializzazione, this.durata, this.capitoli, this.idProf, this.isdeleted
+        if (typeof (this.Id) != 'undefined' && this.Id != null) {
+            let res = await updateCourses(this.Id, this.Titolo, this.Specializzazione, this.Durata, this.Capitoli, this.IdProf, this.IsDeleted
             );
             if (!res) {
                 throw 'save Courses failed (update case).';
             }
         } else {
-            let res = await insertCourses(this.titolo, this.specializzazione, this.durata, this.capitoli, this.idProf, this.isdeleted
+            let res = await insertCourses(this.Titolo, this.Specializzazione, this.Durata, this.Capitoli, this.IdProf, this.IsDeleted
             );
             this.setId(res);
             if (!res) throw 'save Courses failed (insert case).';
