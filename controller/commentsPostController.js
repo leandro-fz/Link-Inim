@@ -68,16 +68,21 @@ class CommentiPostController {
     static async update(req, res) {
         try {
             let np = await CommentiPost.get(req.params.idCommentiPost);
+            if (np.IdUtente == req.idUtenteLogged) {
+                if (req.body.Testo) np.setTesto(req.body.Testo);
+                //if (req.body.Datetime) 
+                np.setDatetime(new Date());
+                //if (req.body.IdUtente)
+                np.setIdUtente(req.idUtenteLogged);
+                if (req.body.IdPost) np.setIdPost(req.body.IdPost);
+                if (req.body.IdCommento) np.setIdCommento(req.body.IdCommento);
+                await np.save();
+                res.status(200).send("Commento modificato");
+            }
+            else {
+                res.status(403).send("non autorizzato")
+            }
 
-            if (req.body.Testo) np.setTesto(req.body.Testo);
-            //if (req.body.Datetime) 
-            np.setDatetime(new Date());
-            //if (req.body.IdUtente)
-            np.setIdUtente(req.idUtenteLogged);
-            if (req.body.IdPost) np.setIdPost(req.body.IdPost);
-            if (req.body.IdCommento) np.setIdCommento(req.body.IdCommento);
-            await np.save();
-            res.status(200).send("Commento modificato");
         } catch (e) {
             res.status(500).send("Internal Server Error");
             // console.log(e);
@@ -87,10 +92,15 @@ class CommentiPostController {
     // cancella il commento con l'id specificato
     static async delete(req, res) {
         try {
-            if (await CommentiPost.delete(req.params.idCommentiPost)) {
-                res.status(200).send('successfully deleted');
+            let result = await CommentiPost.get(req.params.id)
+            if (result.IdUtente == req.idUtenteLogged) {
+                if (await CommentiPost.delete(req.params.idCommentiPost)) {
+                    res.status(200).send('successfully deleted');
+                } else {
+                    res.status(400).send("something went wrong");
+                }
             } else {
-                res.status(400).send("something went wrong");
+                res.status(403).send("non autorizzato")
             }
         } catch {
             res.status(500).send("Internal Server Error");

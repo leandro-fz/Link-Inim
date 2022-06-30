@@ -72,15 +72,21 @@ class CoursesController {
     static async update(req, res) {
         try {
             logger.debug("CoursesController: update: body: ", req.body);
+
             let np = await Courses.get(req.params.id);
-            if (req.body.Titolo) np.setTitolo(req.body.Titolo);
-            if (req.body.Specializzazione) np.setSpecializzazione(req.body.Specializzazione);
-            if (req.body.Durata) np.setDurata(req.body.Durata);
-            if (req.body.Capitoli) np.setCapitoli(req.body.Capitoli);
-            np.setIdProf(req.idUtenteLogged);
-            if (req.body.IsDeleted !== null) np.setIsDeleted(req.body.IsDeleted);
-            await np.save();
-            res.status(200).send("Corso modificato");
+            if (np.IdProf == req.idUtenteLogged) {
+                if (req.body.Titolo) np.setTitolo(req.body.Titolo);
+                if (req.body.Specializzazione) np.setSpecializzazione(req.body.Specializzazione);
+                if (req.body.Durata) np.setDurata(req.body.Durata);
+                if (req.body.Capitoli) np.setCapitoli(req.body.Capitoli);
+                np.setIdProf(req.idUtenteLogged);
+                if (req.body.IsDeleted !== null) np.setIsDeleted(req.body.IsDeleted);
+                await np.save();
+                res.status(200).send("Corso modificato");
+            } else {
+                res.status(403).send('non autorizzato')
+            }
+
         } catch (e) {
             logger.error("ERRORE Update CorsiController:", e);
             res.status(500).send("Internal Server Error");
@@ -91,11 +97,17 @@ class CoursesController {
     // elimina il corso con l'id specificato
     static async delete(req, res) {
         try {
-            if (await Courses.delete(req.params.idCorsi)) {
-                res.status(200).send('corso cancellato');
+            let result2 = await Courses.get(req.params.idCorsi)
+            if (result2.IdProf == req.idUtenteLogged) {
+                if (await Courses.delete(req.params.idCorsi)) {
+                    res.status(200).send('corso cancellato');
+                } else {
+                    res.status(400).send("something went wrong");
+                }
             } else {
-                res.status(400).send("something went wrong");
+                res.status(403).send('non autorizzato')
             }
+
         } catch (e) {
             logger.error("ERRORE Delete CorsiController:", e);
             res.status(500).send("Internal Server Error");
