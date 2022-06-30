@@ -1,11 +1,15 @@
 const { Router } = require('express');
+const MatchingController = require('../controller/matchingController');
 const { PostController } = require('../controller/postController');
 const routerHome = Router();
 
 routerHome.get('/', PostController.lista ) //mostra tutti i post
-routerHome.get('/post/:id', PostController.get ) //mostra tutti i post
-routerHome.post('/post', PostController.insert ) //mostra tutti i post
-routerHome.put('/post/:id', PostController.update ) //mostra tutti i post
-routerHome.delete('/post/:id', PostController.delete ) //mostra tutti i post
+routerHome.get('/post/:id', PostController.get ) //mostra post specifico
+routerHome.post('/post', PostController.insert ) //crea nuovo post
+routerHome.put('/post/:id', PostController.update ) //modifica post specifico
+routerHome.delete('/post/:id', PostController.delete ) //elimina post specifico
+
+routerHome.get('/matching/specializzazioni', MatchingController.getNomiSpecializzazioni )//nomi di tutte specializzazioni
+ 
 
 module.exports = routerHome;
