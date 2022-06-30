@@ -3,7 +3,23 @@
 Progetto sviluppato per occasione dell'hackathon di fine corso.
 Migliora la produttività della tua azienda con Link-Inim
 
+###Indice
+*1.[Installazione](#installazione)
+*2.[Guida](#guida)
+*3.[Rotte Backend](#rotte)
+*4.[Software utilizzati](#software)
+*5.[Autori[(#autori)
 
+<a name="installazione"></a>
+##Installazione
+
+<a name="guida"></a>
+##Guida
+
+<a name="rotte"></a>
+##Rotte Backend
+
+<a name="software"></a>
 ## Software utilizzati
 * Ambiente di sviluppo : [Visual Studio Code](https://code.visualstudio.com/)
 * Software per la gestione di librerie : [npm](https://www.npmjs.com/)
@@ -14,7 +30,7 @@ Migliora la produttività della tua azienda con Link-Inim
 * Task management : [Trello](https://trello.com/)
 * Database platform : [MySQL Workbench](https://www.mysql.com/it/products/workbench/)
 
-
+<a name="autori"></a>
 ## Autori
 
 |             Autori            |   Linkedin  |
