@@ -4,11 +4,11 @@ Progetto sviluppato per occasione dell'hackathon di fine corso.
 Migliora la produttività della tua azienda con Link-Inim
 
 ###Indice
-*1.[Installazione](#installazione)
-*2.[Guida](#guida)
-*3.[Rotte Backend](#rotte)
-*4.[Software utilizzati](#software)
-*5.[Autori[(#autori)
+* 1.[Installazione](#installazione)
+* 2.[Guida](#guida)
+* 3.[Rotte Backend](#rotte)
+* 4.[Software utilizzati](#software)
+* 5.[Autori[(#autori)
 
 <a name="installazione"></a>
 ##Installazione
