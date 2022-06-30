@@ -48,8 +48,8 @@ class UtenteController {
             } else {
                 np = req.Utente;
             }
-            let token = await getTokenByUtente(req.idUtenteLogged)
-            let res2 = await forcedExpirationToken(req.idUtenteLogged, token.Token, 0, 0 )
+            //let token = await getTokenByUtente(req.idUtenteLogged)
+            let res2 = await forcedExpirationToken(req.idUtenteLogged, req.actualToken, 0, 0 )
             if (!res2) {
                 res.status(500).send("Internal Server Error Token");
             }

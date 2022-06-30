@@ -20,6 +20,7 @@ async function controllaAutenticazione(req, res, next) {
       })
     }
     req.idUtenteLogged = idUtenteLogged;
+    req.actualToken = token;
     next();
   }
   
