@@ -24,7 +24,7 @@ npm install
 per installare tutte le dipendenze necessarie.
 Si dovrà inoltre avviare il database 
 
-Per avviare il progetto digitarte sul terminale
+Per avviare il progetto digitare sul terminale
 ```
 npm run dev
 ```
