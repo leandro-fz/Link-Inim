@@ -28,6 +28,10 @@ Per avviare il progetto digitare sul terminale
 ```
 npm run dev
 ```
+Il server sarà sulla porta 3000
+```
+localhost:3000
+```
 
 <a name="guida"></a>
 ## Guida
