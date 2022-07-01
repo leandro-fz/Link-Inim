@@ -54,8 +54,9 @@ class CommentiPostController {
             np.setDatetime(new Date());
             //if (req.body.IdUtente)
             np.setIdUtente(req.idUtenteLogged);
-            if (req.body.IdPost) np.setIdPost(req.body.IdPost);
-            if (req.body.IdCommento) np.setIdCommento(req.body.IdCommento);
+            //if (req.body.IdPost)
+            np.setIdPost(req.params.idPost);
+            //if (req.body.IdCommento) np.setIdCommento(req.body.IdCommento);
             await np.save();
             res.status(200).send("Commento pubblicato");
         } catch (e) {
@@ -74,8 +75,10 @@ class CommentiPostController {
                 np.setDatetime(new Date());
                 //if (req.body.IdUtente)
                 np.setIdUtente(req.idUtenteLogged);
-                if (req.body.IdPost) np.setIdPost(req.body.IdPost);
-                if (req.body.IdCommento) np.setIdCommento(req.body.IdCommento);
+                //if (req.body.IdPost) 
+                np.setIdPost(req.params.idPost);
+                //if (req.body.IdCommento) 
+                //np.setIdCommento(req.params.idCommentiPost);
                 await np.save();
                 res.status(200).send("Commento modificato");
             }
@@ -92,7 +95,7 @@ class CommentiPostController {
     // cancella il commento con l'id specificato
     static async delete(req, res) {
         try {
-            let result = await CommentiPost.get(req.params.id)
+            let result = await CommentiPost.get(req.params.idCommentiPost)
             if (result.IdUtente == req.idUtenteLogged) {
                 if (await CommentiPost.delete(req.params.idCommentiPost)) {
                     res.status(200).send('successfully deleted');

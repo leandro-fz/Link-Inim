@@ -8,7 +8,7 @@ class Quiz {
             if (p.Domanda) this.Domanda = p.Domanda;
 
             if (p.RispostaCorretta) this.RispostaCorretta = p.RispostaCorretta;
-            if (p.RerrataErrata1) this.RispostaErrata1 = p.RispostaErrata1;
+            if (p.RispostaErrata1) this.RispostaErrata1 = p.RispostaErrata1;
             if (p.RispostaErrata2) this.RispostaErrata2 = p.RispostaErrata2;
             if (p.RispostaErrata3) this.RispostaErrata3 = p.RispostaErrata3;
         }

@@ -55,7 +55,8 @@ class CommentsController {
             np.setDatetime(new Date());
             //if (req.body.IdUtente)
             np.setIdUtente(req.idUtenteLogged);
-            if (req.body.IdCorso) np.setIdCorso(req.body.IdCorso);
+            //if (req.body.IdCorso) 
+            np.setIdCorso(req.params.idCorsi);
             await np.save();
             res.status(200).send("Commento pubblicato");
         } catch (e) {
@@ -74,7 +75,8 @@ class CommentsController {
                 np.setDatetime(new Date());
                 //if (req.body.IdUtente)
                 np.setIdUtente(req.idUtenteLogged);
-                if (req.body.IdCorso) np.setIdCorso(req.body.IdCorso);
+                //if (req.body.IdCorso)
+                np.setIdCorso(req.params.idCorsi);
                 await np.save();
                 res.status(200).send("Commento modificato");
             } else {

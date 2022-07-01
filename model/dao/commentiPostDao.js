@@ -15,6 +15,7 @@ const listCommentiPost = async (id_post) => {
 const getCommentById = async (Id) => {
     const conn = await getConnection();
     const query = `SELECT * FROM CommentiPost WHERE Id = ?`;
+    //const query = `SELECT * FROM CommentiPost LEFT JOIN Post ON CommentiPost.IdPost = Post.Id WHERE CommentiPost.Id = ?`;
     const [rows] = await conn.query(query, [Id]);
     return rows[0];
 }
