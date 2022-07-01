@@ -24,6 +24,11 @@ npm install
 per installare tutte le dipendenze necessarie.
 Si dovrà inoltre avviare il database 
 
+Per avviare il progetto digitarte sul terminale
+```
+npm run dev
+```
+
 <a name="guida"></a>
 ## Guida
 Ci sono tre tipi di utenti nel sistema con tre tipi di privilegi diversi:
