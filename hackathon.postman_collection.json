@@ -1,0 +1,1035 @@
+{
+	"info": {
+		"_postman_id": "89982636-424c-457a-9d24-39a95f296373",
+		"name": "hackathon",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "LOGIN",
+			"item": [
+				{
+					"name": "LOGIN",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\" : \"222\",\r\n    \"password\" : \"222\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/login",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"login"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "HOME",
+			"item": [
+				{
+					"name": "POST",
+					"item": [
+						{
+							"name": "crea post",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"Testo\" : \"post prova\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:3000/home/post",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"home",
+										"post"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "put post",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"Testo\" : \"prova100\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:3000/home/post/10",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"home",
+										"post",
+										"10"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "delete post",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "localhost:3000/home/post/10",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"home",
+										"post",
+										"10"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "get post",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "localhost:3000/home/post/2",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"home",
+										"post",
+										"2"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "COMMENTI POST",
+					"item": [
+						{
+							"name": "crea commento post",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"Testo\" : \"commento post 11\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:3000/home/post/11/commenti",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"home",
+										"post",
+										"11",
+										"commenti"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "put commento post",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"Testo\" : \"gsdfgsdgsdgsdgg\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:3000/home/post/9/commenti/4",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"home",
+										"post",
+										"9",
+										"commenti",
+										"4"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "delete commento post",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "localhost:3000/home/post/9/commenti/1",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"home",
+										"post",
+										"9",
+										"commenti",
+										"1"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "get COMMENTI POèST",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "localhost:3000/home/post/3/commenti/9",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"home",
+										"post",
+										"3",
+										"commenti",
+										"9"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "get tutti COMMENTI POèST",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "localhost:3000/home/post/9/commenti/",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"home",
+										"post",
+										"9",
+										"commenti",
+										""
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "home MOSTRAS TUTTI  I POST",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:3000/home",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"home"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get nomi specalizzazioni",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "5552116f-8191-4b21-bbce-f0006964919a",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:3000/home/matching/specializzazioni",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"home",
+								"matching",
+								"specializzazioni"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get PERSONEdisponibili matching",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "5552116f-8191-4b21-bbce-f0006964919a",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:3000/home/matching/2",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"home",
+								"matching",
+								"2"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "CORSI",
+			"item": [
+				{
+					"name": "crud CORSI",
+					"item": [
+						{
+							"name": "get corso",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "localhost:3000/corso/1",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"corso",
+										"1"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "post corso",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"Titolo\" : \"ennesdima prova\",\r\n    \"Specializzazione\" : 2,\r\n    \"Durata\" : 3,\r\n    \"Capitoli\" : 6\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:3000/corso",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"corso"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "putcorso",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"Titolo\" : \"ennesdima prova2\",\r\n    \"Specializzazione\" : 3,\r\n    \"Durata\" : 3,\r\n    \"Capitoli\" : 6\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:3000/corso/24",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"corso",
+										"24"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "delete corso",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:3000/corsi/2",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"corsi",
+										"2"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "commenti corsi",
+					"item": [
+						{
+							"name": "tutti i commenti di un corso",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "localhost:3000/corso/24/commenti",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"corso",
+										"24",
+										"commenti"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "commento di un corso",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "localhost:3000/corso/24/commenti/1",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"corso",
+										"24",
+										"commenti",
+										"1"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "commento di un corso Copy",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"Testo\" : \"Prova\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:3000/corso/24/commenti/",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"corso",
+										"24",
+										"commenti",
+										""
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "commento di un corso Copy 2",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"Testo\" : \"Provamodificata\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:3000/corso/24/commenti/1",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"corso",
+										"24",
+										"commenti",
+										"1"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "commento di un corso Copy 3",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "localhost:3000/corso/24/commenti/1",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"corso",
+										"24",
+										"commenti",
+										"1"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "quiz corsi",
+					"item": [
+						{
+							"name": "get quiz",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "localhost:3000/corso/24/quiz/1",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"corso",
+										"24",
+										"quiz",
+										"1"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "POST quiz",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"IdCorso\" : 24,\r\n    \"Domanda\" : \"2+2 = \",\r\n    \"RispostaCorretta\" : \"4\",\r\n    \"RispostaErrata1\" : \"22\",\r\n    \"RispostaErrata2\" : \"22\",\r\n    \"RispostaErrata3\" : \"22\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:3000/corso/24/quiz/",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"corso",
+										"24",
+										"quiz",
+										""
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "delete quiz",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "localhost:3000/corso/24/quiz/1",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"corso",
+										"24",
+										"quiz",
+										"1"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "get quiz Copy",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"IdCorso\" : 24,\r\n    \"Domanda\" : \"2+2 = \",\r\n    \"RispostaCorretta\" : \"4\",\r\n    \"RispostaErrata1\" : \"23\",\r\n    \"RispostaErrata2\" : \"22\",\r\n    \"RispostaErrata3\" : \"22\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:3000/corso/24/quiz/1",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"corso",
+										"24",
+										"quiz",
+										"1"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "tutti i corsi",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:3000/corso/lista",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"corso",
+								"lista"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "ADMIN",
+			"item": [
+				{
+					"name": "admin home",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:3000/admin/",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"admin",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "admin  crea utente",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"Nome\": \"z2\",\r\n    \"Cognome\": \"b\",\r\n    \"CodFisc\": \"zzzzzz2\",\r\n    \"Email\": \"z2\",\r\n    \"Password\": \"z\",\r\n    \"DataDiNascita\": \"2002-03-19\",\r\n    \"Matching\": 0,\r\n    \"ProfEsterno\": 0,\r\n    \"Iban\": \"avmh\",\r\n    \"ImmagineUrl\": \"http://www.reichert.com/\",\r\n    \"DataAssunzione\": \"2002-01-04\",\r\n    \"IsAdmin\": 0,\r\n    \"IsDeleted\": 0,\r\n    \"IsProf\" : 0\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/admin/utente",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"admin",
+								"utente"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "admin  put utente",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"Nome\": \"222\",\r\n    \"Cognome\": \"b\",\r\n    \"CodFisc\": \"2222\",\r\n    \"Email\": \"222\",\r\n    \"Password\": \"222\",\r\n    \"DataDiNascita\": \"2002-03-19\",\r\n    \"Matching\": 1,\r\n    \"ProfEsterno\": 0,\r\n    \"Iban\": \"avmh\",\r\n    \"ImmagineUrl\": \"http://www.reichert.com/\",\r\n    \"DataAssunzione\": \"2002-01-04\",\r\n    \"IsAdmin\": 0,\r\n    \"IsDeleted\": 0,\r\n    \"IsProf\" : 1\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/admin/utente/2",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"admin",
+								"utente",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "admin get cliente specifico",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"Nome\": \"QQQQQQQQ\",\r\n    \"Cognome\": \"gesrhg\",\r\n    \"CodFisc\": \"tertertertet\",\r\n    \"Email\": \"zo'konhresthsrt@example.org\",\r\n    \"Password\": \"7ee64825688d74ec249e80aa11ecad85a1545b39\",\r\n    \"DataDiNascita\": \"2002-03-19\",\r\n    \"Matching\": 0,\r\n    \"ProfEsterno\": 0,\r\n    \"Iban\": \"avmh\",\r\n    \"ImmagineUrl\": \"http://www.reichert.com/\",\r\n    \"DataAssunzione\": \"2002-01-04\",\r\n    \"IsAdmin\": 0,\r\n    \"IsDeleted\": 0,\r\n    \"IsProf\" : 0\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/admin/utente/2",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"admin",
+								"utente",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "admin delete cliente specifico",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"Nome\": \"QQQQQQQQ\",\r\n    \"Cognome\": \"gesrhg\",\r\n    \"CodFisc\": \"tertertertet\",\r\n    \"Email\": \"zo'konhresthsrt@example.org\",\r\n    \"Password\": \"7ee64825688d74ec249e80aa11ecad85a1545b39\",\r\n    \"DataDiNascita\": \"2002-03-19\",\r\n    \"Matching\": 0,\r\n    \"ProfEsterno\": 0,\r\n    \"Iban\": \"avmh\",\r\n    \"ImmagineUrl\": \"http://www.reichert.com/\",\r\n    \"DataAssunzione\": \"2002-01-04\",\r\n    \"IsAdmin\": 0,\r\n    \"IsDeleted\": 0,\r\n    \"IsProf\" : 0\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/admin/utente/105",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"admin",
+								"utente",
+								"105"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "lista utenti admin",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:3000/admin/utenti",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"admin",
+								"utenti"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "admin set prof",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:3000/admin/utente/setprof/111",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"admin",
+								"utente",
+								"setprof",
+								"111"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "PROFILE",
+			"item": [
+				{
+					"name": "profile",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:3000/profile/",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"profile",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "profile new password",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"Password\" : \"amaca\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/profile/newpassword",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"profile",
+								"newpassword"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "profile new Matching",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"Password\" : \"amaca\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/profile/newmatching",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"profile",
+								"newmatching"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "LOGOUT",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:3000/profile/logout",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"profile",
+								"logout"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"auth": {
+		"type": "bearer",
+		"bearer": [
+			{
+				"key": "token",
+				"value": "99c7dd3c-2f9f-4166-b00b-16f2b5b105de",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	]
+}
