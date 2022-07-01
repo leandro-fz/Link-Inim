@@ -24,6 +24,15 @@ npm install
 per installare tutte le dipendenze necessarie.
 Si dovrà inoltre avviare il database 
 
+Per avviare il progetto digitare sul terminale
+```
+npm run dev
+```
+Il server sarà sulla porta 3000
+```
+localhost:3000
+```
+
 <a name="guida"></a>
 ## Guida
 Ci sono tre tipi di utenti nel sistema con tre tipi di privilegi diversi:
