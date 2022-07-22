@@ -17,7 +17,7 @@ Clonare il progetto su un ambiente di sviluppo o usare il comando seguente trami
 ```
 git clone https://github.com/leandro-fz/Link-Inim
 ```
-Una volta installata si dorà seguire il comando
+Una volta installata si dovrà seguire il comando
 ```
 npm install
 ```
