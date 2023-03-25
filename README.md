@@ -72,4 +72,3 @@ l'admin può accedere a tutte le rotte, il professore solo a quelle gialle e ver
 | Maria Fernanda Fabian Briceno |   [link](https://www.linkedin.com/in/maria-fernanda-fabian-briceno-6429051a2/)  |
 
 
-<img src="images/link-inim-logo%20ver2.png"/>
